@@ -1,0 +1,8 @@
+# 临时/系统/编辑器
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-*
