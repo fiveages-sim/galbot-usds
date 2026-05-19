@@ -7,8 +7,8 @@
                 double radius = 5
             }
             dictionary Perspective = {
-                double3 position = (1.9925666166749676, 1.1667783275314823, 1.0503068439895658)
-                double3 target = (-4.4970534785574525, -1.9275350895442092, -0.4148459242873346)
+                double3 position = (3.1022586971834, -0.281288158594944, 1.1571656249672164)
+                double3 target = (-4.696943692037534, -2.0439387932128636, -0.29275857091287816)
             }
             dictionary Right = {
                 double3 position = (0, -5, 0)
@@ -21,7 +21,7 @@
             string boundCamera = "/OmniverseKit_Persp"
         }
         dictionary omni_layer = {
-            string authoring_layer = "./Galbot_One.usd"
+            string authoring_layer = "./Galbot_One.usda"
             dictionary locked = {
             }
             dictionary muteness = {
@@ -40,7 +40,7 @@
 def Xform "Galbot_One" (
     prepend apiSchemas = ["PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
     variants = {
-        string Arms = "Galbot_One_Arms"
+        string Arms = "Galbot_Charlie_Arms"
         string Base = "Chassis"
         string Physics = "PhysX"
         string Robot = "Robot"
@@ -611,6 +611,71 @@ def Xform "Galbot_One" (
             }
         }
     }
+
+    over "Galbot_One_Arms"
+    {
+        string[] isaac:changelog (
+            displayName = "Changelog"
+        )
+        string isaac:description (
+            displayName = "Description"
+        )
+        token isaac:license (
+            displayName = "License"
+        )
+        string isaac:namespace (
+            displayName = "Namespace"
+        )
+        rel isaac:physics:robotJoints (
+            displayName = "Robot Joints"
+        )
+        rel isaac:physics:robotLinks (
+            displayName = "Robot Links"
+        )
+        token isaac:robotType (
+            displayName = "Robot Type"
+        )
+        string isaac:source (
+            displayName = "Source"
+        )
+        string isaac:version (
+            displayName = "Version"
+        )
+    }
+
+    def "Galbot_Charlie_Arms" (
+        prepend payload = @./components/Galbot_Charlie_Arms/Galbot_Charlie_Arms.usda@
+    )
+    {
+        string[] isaac:changelog (
+            displayName = "Changelog"
+        )
+        string isaac:description (
+            displayName = "Description"
+        )
+        token isaac:license (
+            displayName = "License"
+        )
+        string isaac:namespace (
+            displayName = "Namespace"
+        )
+        rel isaac:physics:robotJoints (
+            displayName = "Robot Joints"
+        )
+        rel isaac:physics:robotLinks (
+            displayName = "Robot Links"
+        )
+        token isaac:robotType (
+            displayName = "Robot Type"
+        )
+        string isaac:source (
+            displayName = "Source"
+        )
+        string isaac:version (
+            displayName = "Version"
+        )
+        double3 xformOp:translate = (-0.027056, 0.087, 0.565)
+    }
     variantSet "Physics" = {
         "None" (
             prepend references = @./configuration/Galbot_One_base.usd@
@@ -661,6 +726,13 @@ def Xform "Galbot_One" (
         }
     }
     variantSet "Arms" = {
+        "Galbot_Charlie_Arms" (
+            customData = {
+                string[] variantPrimPaths = ["Galbot_Charlie_Arms"]
+            }
+        ) {
+
+        }
         "Galbot_One_Arms" (
             prepend payload = @./configuration/Galbot_One_Arms_Galbot_One_Arms.usd@
         ) {
@@ -724,7 +796,7 @@ def "Render" (
                 uint omni:rtx:viewTile:limit = 4294967295
                 rel orderedVars = </Render/Vars/LdrColor>
                 custom bool overrideClipRange = 0
-                uniform int2 resolution = (2048, 1080)
+                uniform int2 resolution = (1920, 1147)
             }
         }
     }
@@ -770,10 +842,10 @@ over "OmniverseKit_Persp" (
     float exposure:time = 0.02
     float focalLength = 18.147562
     float focusDistance = 400
-    custom uniform vector3d omni:kit:centerOfInterest = (5.551115123125783e-16, 0, -7.337344011147941)
-    float3 xformOp:rotateXYZ = (78.4815, -3.1805547e-15, 115.492256)
+    custom uniform vector3d omni:kit:centerOfInterest = (6.148005986193671e-16, 0, -8.126301455246846)
+    float3 xformOp:rotateXYZ = (79.722046, -0, 102.73512)
     float3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (1.9925666166749676, 1.1667783275314823, 1.0503068439895658)
+    double3 xformOp:translate = (3.1022586971834, -0.281288158594944, 1.1571656249672164)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 }
 

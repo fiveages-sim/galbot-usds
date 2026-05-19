@@ -1,0 +1,603 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (1.1203723943483324, 1.1994547329142962, 1.1228843804480189)
+                double3 target = (0.08850393831345871, 0.26269789846451563, 0.14074148239579531)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary metricsAssembler = {
+            dictionary "/Galbot_Charlie_Arms/left_link7/left_camera_mount_link/left_flange_link/left_camera_link/d415" = {
+            }
+            dictionary "/Galbot_Charlie_Arms/right_link7/right_camera_mount_link/right_flange_link/right_camera_link/d415" = {
+            }
+            int version = 1
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Galbot_Charlie_Arms.usda"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "Galbot_Charlie_Arms"
+    endTimeCode = 0
+    metersPerUnit = 1
+    startTimeCode = -1
+    upAxis = "Z"
+)
+
+def Xform "Galbot_Charlie_Arms" (
+    variants = {
+        string EE_left = "Hitbot_Gripper_left"
+        string EE_right = "Hitbot_Gripper_right"
+        string Physics = "PhysX"
+        string Robot = "Robot"
+        string Sensor = "Sensors"
+    }
+    prepend variantSets = ["Physics", "Sensor", "Robot", "EE_right", "EE_left"]
+)
+{
+    string isaac:namespace (
+        displayName = "Namespace"
+        doc = "Namespace of the prim in Isaac Sim"
+    )
+
+    over "joints"
+    {
+        over "left_joint1"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float drive:angular:physics:targetPosition = 11.2
+            string isaac:nameOverride (
+                displayName = "Name Override"
+                doc = "Name override for prim lookup in base name search"
+            )
+            float physics:lowerLimit = -180
+            float physics:upperLimit = 180
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint2"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -90
+            float physics:upperLimit = 104.85127
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint3"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -180
+            float physics:upperLimit = 180
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint4"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -120.32112
+            float physics:upperLimit = 120.32112
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint5"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -166.15776
+            float physics:upperLimit = 166.15776
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint6"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -45
+            float physics:upperLimit = 45
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "left_joint7"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float physics:lowerLimit = -80.21409
+            float physics:upperLimit = 80.21409
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint1"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint3"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint4"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint2"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint5"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint7"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "right_joint6"
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 200
+            float drive:angular:physics:stiffness = 600000
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+    }
+
+    over "left_link7"
+    {
+        rel physics:simulationOwner
+
+        over "left_camera_mount_link"
+        {
+            over "left_flange_link"
+            {
+                over "left_camera_link"
+                {
+                    def "d415" (
+                        prepend payload = @../../../../../sensors/d415.usd@
+                    )
+                    {
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        double xformOp:rotateX:unitsResolve = 90
+                        float3 xformOp:scale = (1, 1, 1)
+                        double3 xformOp:translate = (0, 0, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
+                    }
+                }
+            }
+        }
+    }
+
+    over "right_link7"
+    {
+        rel physics:simulationOwner
+
+        over "right_camera_mount_link"
+        {
+            over "right_flange_link"
+            {
+                over "right_camera_link"
+                {
+                    def "d415" (
+                        prepend payload = @../../../../../sensors/d415.usd@
+                    )
+                    {
+                        quatf xformOp:orient = (1, 0, 0, 0)
+                        double xformOp:rotateX:unitsResolve = 90
+                        float3 xformOp:scale = (1, 1, 1)
+                        double3 xformOp:translate = (0, 0, 0)
+                        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
+                    }
+                }
+            }
+        }
+    }
+
+    over "Hitbot_Gripper_left"
+    {
+        over "gripper_base"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link1"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link2"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link3"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link4"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link5"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link6"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "joints"
+        {
+            over "gripper_joint"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint2"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint4"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint5"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint3"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint6"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+        }
+    }
+
+    over "Hitbot_Gripper_right"
+    {
+        over "gripper_base"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link1"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link2"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link3"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link4"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link5"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "gripper_link6"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "joints"
+        {
+            over "gripper_joint"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint2"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint4"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint5"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint3"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "gripper_joint6"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+        }
+    }
+
+    over "base_link"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link1"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link2"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link3"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link4"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link5"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "left_link6"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link1"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link2"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link3"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link4"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link5"
+    {
+        rel physics:simulationOwner
+    }
+
+    over "right_link6"
+    {
+        rel physics:simulationOwner
+    }
+    variantSet "Physics" = {
+        "None" (
+            prepend references = @./configuration/Galbot_Charlie_Arms_base.usd@
+        ) {
+            over "joints" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "PhysX" (
+            prepend payload = @./configuration/Galbot_Charlie_Arms_physics.usd@
+        ) {
+
+        }
+    }
+    variantSet "Sensor" = {
+        "None" {
+
+        }
+        "Sensors" (
+            prepend payload = @./configuration/Galbot_Charlie_Arms_sensor.usd@
+        ) {
+
+        }
+    }
+    variantSet "Robot" = {
+        "None" {
+
+        }
+        "Robot" (
+            prepend payload = @./configuration/Galbot_Charlie_Arms_robot.usd@
+        ) {
+
+        }
+    }
+    variantSet "EE_right" = {
+        "Hitbot_Gripper_right" (
+            prepend payload = @configuration/Galbot_Charlie_Arms_EE_right_Hitbot_Gripper_right.usd@
+        ) {
+            prepend rel isaac:physics:robotJoints = </Galbot_Charlie_Arms/Hitbot_Gripper_right>
+            prepend rel isaac:physics:robotLinks = </Galbot_Charlie_Arms/Hitbot_Gripper_right>
+
+        }
+        "None" {
+
+        }
+    }
+    variantSet "EE_left" = {
+        "Hitbot_Gripper_left" (
+            prepend payload = @configuration/Galbot_Charlie_Arms_EE_left_Hitbot_Gripper_left.usd@
+        ) {
+            prepend rel isaac:physics:robotJoints = </Galbot_Charlie_Arms/Hitbot_Gripper_left>
+            prepend rel isaac:physics:robotLinks = </Galbot_Charlie_Arms/Hitbot_Gripper_left>
+
+        }
+        "None" {
+
+        }
+    }
+}
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                token omni:rtx:background:source:texture:textureMode = "repeatMirrored"
+                token omni:rtx:background:source:type = "domeLight"
+                bool omni:rtx:dlss:frameGeneration = 0
+                string omni:rtx:material:db:rtSensorNameToIdMap = "DefaultMaterial:0;AsphaltStandardMaterial:1;AsphaltWeatheredMaterial:2;VegetationGrassMaterial:3;WaterStandardMaterial:4;GlassStandardMaterial:5;FiberGlassMaterial:6;MetalAlloyMaterial:7;MetalAluminumMaterial:8;MetalAluminumOxidizedMaterial:9;PlasticStandardMaterial:10;RetroMarkingsMaterial:11;RetroSignMaterial:12;RubberStandardMaterial:13;SoilClayMaterial:14;ConcreteRoughMaterial:15;ConcreteSmoothMaterial:16;OakTreeBarkMaterial:17;FabricStandardMaterial:18;PlexiGlassStandardMaterial:19;MetalSilverMaterial:20"
+                bool omni:rtx:material:db:syncLoads = 1
+                bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
+                bool omni:rtx:post:registeredCompositing:invertToneMap = 1
+                bool omni:rtx:pt:lightcache:cached:dontResolveConflicts = 1
+                int omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                int omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                bool omni:rtx:rt:lightcache:spatialCache:dontResolveConflicts = 1
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                bool omni:rtx:scene:hydra:mdlMaterialWarmup = 1
+                uint omni:rtx:viewTile:limit = 4294967295
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1280, 720)
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        prepend apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars"
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+        }
+    }
+}
+
