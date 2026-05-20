@@ -8,9 +8,9 @@ Galbot humanoid robot USD assets.
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="../../.images/galbot%20zero.png" alt="Galbot Zero" width="300"> | <img src="../../.images/galbot%20one.png" alt="Galbot One" width="300"> | <img src="../../.images/galbot_charlie.png" alt="Galbot One Charlie" width="300"> |
+| <img src=".images/galbot_zero.png" alt="Galbot Zero" width="300"> | <img src=".images/galbot_one.png" alt="Galbot One" width="300"> | <img src=".images/galbot_one_charlie.png" alt="Galbot One Charlie" width="300"> |
 | **Galbot Zero**<br>`Galbot_Zero/Galbot_Zero.usda` | **Galbot One**<br>`Galbot_One/Galbot_One.usda` | **Galbot One Charlie**<br>`Galbot_One` arms variant |
-| <img src="../../.images/galbot%20g1.png" alt="Galbot Fox" width="300"> | <img src="../../.images/galbot%20g1.png" alt="Galbot Golf" width="300"> | <img src="../../.images/galbot%20s1.png" alt="Galbot S1" width="300"> |
+| <img src=".images/galbot_fox.png" alt="Galbot Fox" width="300"> | <img src=".images/galbot_golf.png" alt="Galbot Golf" width="300"> | <img src=".images/galbot_s1.png" alt="Galbot S1" width="300"> |
 | **Galbot Fox**<br>`Galbot_G1` head variant | **Galbot Golf**<br>`Galbot_G1` head variant | **Galbot S1**<br>`Galbot_S1/Galbot_S1.usda` |
 
 </div>
