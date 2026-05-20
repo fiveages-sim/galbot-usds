@@ -1,0 +1,897 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (0.6421409600870097, 0.7702632802189712, 1.02351342039129)
+                double3 target = (-0.16983159825582794, -0.041709278123866156, 0.21154088142880045)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary metricsAssembler = {
+            dictionary "/SteeringChassis/base_link/omni_chassis_base_link/chassis_lidar/mid360" = {
+            }
+            int version = 1
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./SteeringChassis.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "SteeringChassis"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "SteeringChassis" (
+    variants = {
+        string Physics = "PhysX"
+        string Robot = "Robot"
+        string Sensor = "Sensors"
+    }
+    prepend variantSets = ["Physics", "Sensor", "Robot"]
+)
+{
+    string[] isaac:changelog (
+        displayName = "Changelog"
+    )
+    string isaac:description (
+        displayName = "Description"
+    )
+    token isaac:license (
+        displayName = "License"
+    )
+    string isaac:namespace (
+        displayName = "Namespace"
+    )
+    rel isaac:physics:robotJoints (
+        displayName = "Robot Joints"
+    )
+    rel isaac:physics:robotLinks (
+        displayName = "Robot Links"
+    )
+    token isaac:robotType (
+        displayName = "Robot Type"
+    )
+    string isaac:source (
+        displayName = "Source"
+    )
+    string isaac:version (
+        displayName = "Version"
+    )
+
+    over "base_link"
+    {
+        string isaac:nameOverride (
+            displayName = "Name Override"
+        )
+        bool physxArticulation:articulationEnabled = 1
+
+        over "omni_chassis_base_link"
+        {
+            over "chassis_lidar"
+            {
+                def "mid360" (
+                    prepend payload = @../../../../../sensors/mid360.usd@
+                )
+                {
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    double xformOp:rotateX:unitsResolve = 90
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
+                }
+            }
+        }
+    }
+
+    def "Graph"
+    {
+        def OmniGraph "ROS_Odometry"
+        {
+            token evaluationMode = "Automatic"
+            token evaluator:type = "execution"
+            token fabricCacheBacking = "StageWithoutHistory"
+            int2 fileFormatVersion = (1, 9)
+            token pipelineStage = "pipelineStageSimulation"
+
+            def OmniGraphNode "OnPlaybackTick"
+            {
+                token node:type = "omni.graph.action.OnPlaybackTick"
+                int node:typeVersion = 2
+                custom double outputs:deltaSeconds
+                custom double outputs:frame
+                custom uint outputs:tick (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                custom double outputs:time
+            }
+
+            def OmniGraphNode "Context"
+            {
+                custom uchar inputs:domain_id
+                custom bool inputs:useDomainIDEnvVar
+                token node:type = "isaacsim.ros2.bridge.ROS2Context"
+                int node:typeVersion = 2
+                custom uint64 outputs:context
+            }
+
+            def OmniGraphNode "ReadSimTime"
+            {
+                custom uint64 inputs:referenceTimeDenominator
+                custom int64 inputs:referenceTimeNumerator
+                custom bool inputs:resetOnStop = 0
+                token node:type = "isaacsim.core.nodes.IsaacReadSimulationTime"
+                int node:typeVersion = 1
+                custom double outputs:simulationTime
+            }
+
+            def OmniGraphNode "TFWorld2Odom"
+            {
+                custom string inputs:childFrameId = "odom"
+                custom uint64 inputs:context
+                prepend uint64 inputs:context.connect = </SteeringChassis/Graph/ROS_Odometry/Context.outputs:context>
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = </SteeringChassis/Graph/ROS_Odometry/OnPlaybackTick.outputs:tick>
+                custom string inputs:nodeNamespace = ""
+                custom string inputs:parentFrameId = "world"
+                custom string inputs:qosProfile
+                custom uint64 inputs:queueSize
+                custom quatd inputs:rotation
+                custom bool inputs:staticPublisher
+                custom double inputs:timeStamp
+                prepend double inputs:timeStamp.connect = </SteeringChassis/Graph/ROS_Odometry/ReadSimTime.outputs:simulationTime>
+                custom string inputs:topicName
+                custom vector3d inputs:translation
+                token node:type = "isaacsim.ros2.bridge.ROS2PublishRawTransformTree"
+                int node:typeVersion = 1
+            }
+
+            def OmniGraphNode "TFOdom2Robot" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom string inputs:childFrameId = "base_footprint"
+                custom uint64 inputs:context
+                prepend uint64 inputs:context.connect = </SteeringChassis/Graph/ROS_Odometry/Context.outputs:context>
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = </SteeringChassis/Graph/ROS_Odometry/OnPlaybackTick.outputs:tick>
+                custom string inputs:nodeNamespace = ""
+                custom string inputs:parentFrameId
+                custom string inputs:qosProfile
+                custom uint64 inputs:queueSize
+                custom quatd inputs:rotation
+                prepend quatd inputs:rotation.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:orientation>
+                custom bool inputs:staticPublisher
+                custom double inputs:timeStamp
+                prepend double inputs:timeStamp.connect = </SteeringChassis/Graph/ROS_Odometry/ReadSimTime.outputs:simulationTime>
+                custom string inputs:topicName
+                custom vector3d inputs:translation
+                prepend vector3d inputs:translation.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:position>
+                token node:type = "isaacsim.ros2.bridge.ROS2PublishRawTransformTree"
+                int node:typeVersion = 1
+                uniform float2 ui:nodegraph:node:pos = (-128.25, 13.081782)
+            }
+
+            def OmniGraphNode "ComputeOdometry"
+            {
+                custom rel inputs:chassisPrim = </SteeringChassis/base_link/base_footprint> (
+                    customData = {
+                        dictionary omni = {
+                            dictionary graph = {
+                                string relType = "target"
+                            }
+                        }
+                    }
+                )
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = </SteeringChassis/Graph/ROS_Odometry/OnPlaybackTick.outputs:tick>
+                token node:type = "isaacsim.core.nodes.IsaacComputeOdometry"
+                int node:typeVersion = 1
+                custom vector3d outputs:angularAcceleration
+                custom vector3d outputs:angularVelocity
+                custom uint outputs:execOut (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                custom vector3d outputs:globalLinearAcceleration
+                custom vector3d outputs:globalLinearVelocity
+                custom vector3d outputs:linearAcceleration
+                custom vector3d outputs:linearVelocity
+                custom quatd outputs:orientation
+                custom vector3d outputs:position
+            }
+
+            def OmniGraphNode "PublisherOdometry"
+            {
+                custom vector3d inputs:angularVelocity
+                prepend vector3d inputs:angularVelocity.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:angularVelocity>
+                custom string inputs:chassisFrameId = "base_footprint"
+                custom uint64 inputs:context
+                prepend uint64 inputs:context.connect = </SteeringChassis/Graph/ROS_Odometry/Context.outputs:context>
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:execOut>
+                custom vector3d inputs:linearVelocity
+                prepend vector3d inputs:linearVelocity.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:linearVelocity>
+                custom string inputs:nodeNamespace = ""
+                custom string inputs:odomFrameId
+                custom quatd inputs:orientation
+                prepend quatd inputs:orientation.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:orientation>
+                custom vector3d inputs:position
+                prepend vector3d inputs:position.connect = </SteeringChassis/Graph/ROS_Odometry/ComputeOdometry.outputs:position>
+                custom bool inputs:publishRawVelocities
+                custom string inputs:qosProfile
+                custom uint64 inputs:queueSize
+                custom vector3d inputs:robotFront
+                custom double inputs:timeStamp
+                prepend double inputs:timeStamp.connect = </SteeringChassis/Graph/ROS_Odometry/ReadSimTime.outputs:simulationTime>
+                custom string inputs:topicName = "/odom"
+                token node:type = "isaacsim.ros2.bridge.ROS2PublishOdometry"
+                int node:typeVersion = 1
+            }
+        }
+
+        def OmniGraph "steering_wheel_controller"
+        {
+            token evaluationMode = "Automatic"
+            token evaluator:type = "execution"
+            token fabricCacheBacking = "Shared"
+            int2 fileFormatVersion = (1, 9)
+            token pipelineStage = "pipelineStageSimulation"
+
+            def OmniGraphNode "Context" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom uchar inputs:domain_id
+                custom bool inputs:useDomainIDEnvVar
+                token node:type = "isaacsim.ros2.bridge.ROS2Context"
+                int node:typeVersion = 2
+                custom uint64 outputs:context
+                uniform float2 ui:nodegraph:node:pos = (363, 208.46281)
+            }
+
+            def OmniGraphNode "articulation_controller" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom double[] inputs:effortCommand
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/on_playback_tick.outputs:tick>,
+                ]
+                custom int[] inputs:jointIndices
+                custom token[] inputs:jointNames
+                prepend token[] inputs:jointNames.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/script_node.outputs:Steer_Joints>,
+                    </SteeringChassis/Graph/steering_wheel_controller/script_node.outputs:Steer_Joints>,
+                ]
+                custom double[] inputs:positionCommand
+                prepend double[] inputs:positionCommand.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/script_node.outputs:Steer_Position_Command>,
+                    </SteeringChassis/Graph/steering_wheel_controller/script_node.outputs:Steer_Position_Command>,
+                ]
+                custom string inputs:robotPath
+                custom rel inputs:targetPrim = </SteeringChassis> (
+                    customData = {
+                        dictionary omni = {
+                            dictionary graph = {
+                                string relType = "target"
+                            }
+                        }
+                    }
+                )
+                custom double[] inputs:velocityCommand
+                token node:type = "isaacsim.core.nodes.IsaacArticulationController"
+                int node:typeVersion = 1
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (1752.8911, 194.39476)
+            }
+
+            def OmniGraphNode "articulation_controller_01" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom double[] inputs:effortCommand
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/on_playback_tick.outputs:tick>,
+                ]
+                custom int[] inputs:jointIndices
+                custom token[] inputs:jointNames
+                prepend token[] inputs:jointNames.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/script_node.outputs:Wheel_Joints>,
+                    </SteeringChassis/Graph/steering_wheel_controller/script_node.outputs:Wheel_Joints>,
+                ]
+                custom double[] inputs:positionCommand
+                custom string inputs:robotPath
+                custom rel inputs:targetPrim = </SteeringChassis> (
+                    customData = {
+                        dictionary omni = {
+                            dictionary graph = {
+                                string relType = "target"
+                            }
+                        }
+                    }
+                )
+                custom double[] inputs:velocityCommand
+                prepend double[] inputs:velocityCommand.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/script_node.outputs:Wheel_Velocity_Command>,
+                    </SteeringChassis/Graph/steering_wheel_controller/script_node.outputs:Wheel_Velocity_Command>,
+                ]
+                token node:type = "isaacsim.core.nodes.IsaacArticulationController"
+                int node:typeVersion = 1
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (1723.5674, 460.20117)
+            }
+
+            def OmniGraphNode "break_3_vector" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom token inputs:tuple
+                prepend token inputs:tuple.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/ros2_subscribe_twist.outputs:angularVelocity>,
+                    </SteeringChassis/Graph/steering_wheel_controller/ros2_subscribe_twist.outputs:angularVelocity>,
+                ]
+                token node:type = "omni.graph.nodes.BreakVector3"
+                int node:typeVersion = 1
+                custom token outputs:x
+                custom token outputs:y
+                custom token outputs:z
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (930.839, 216.32007)
+            }
+
+            def OmniGraphNode "break_3_vector_01" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom token inputs:tuple
+                prepend token inputs:tuple.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/scale_to_from_stage_units.outputs:result>,
+                    </SteeringChassis/Graph/steering_wheel_controller/scale_to_from_stage_units.outputs:result>,
+                ]
+                token node:type = "omni.graph.nodes.BreakVector3"
+                int node:typeVersion = 1
+                custom token outputs:x
+                custom token outputs:y
+                custom token outputs:z
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (1097.4495, 555.8277)
+            }
+
+            def OmniGraphNode "ros2_subscribe_twist" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom uint64 inputs:context
+                prepend uint64 inputs:context.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/Context.outputs:context>,
+                    </SteeringChassis/Graph/steering_wheel_controller/Context.outputs:context>,
+                ]
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/on_playback_tick.outputs:tick>,
+                ]
+                custom string inputs:nodeNamespace
+                custom string inputs:qosProfile
+                custom uint64 inputs:queueSize
+                custom string inputs:topicName
+                token node:type = "isaacsim.ros2.bridge.ROS2SubscribeTwist"
+                int node:typeVersion = 1
+                custom vector3d outputs:angularVelocity
+                custom uint outputs:execOut (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                custom vector3d outputs:linearVelocity
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (628.12915, 286.00238)
+            }
+
+            def OmniGraphNode "scale_to_from_stage_units" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom token inputs:conversion (
+                    allowedTokens = ["Convert to stage units", "Convert to meters"]
+                )
+                custom token inputs:value
+                prepend token inputs:value.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/ros2_subscribe_twist.outputs:linearVelocity>,
+                    </SteeringChassis/Graph/steering_wheel_controller/ros2_subscribe_twist.outputs:linearVelocity>,
+                ]
+                token node:type = "isaacsim.core.nodes.OgnIsaacScaleToFromStageUnit"
+                int node:typeVersion = 1
+                custom token outputs:result
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (727.57086, 646.20874)
+            }
+
+            def OmniGraphNode "script_node" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                custom double inputs:angularGain = 1.05
+                custom double inputs:Desired_Angular_Velocity
+                prepend double inputs:Desired_Angular_Velocity.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/break_3_vector.outputs:z>,
+                    </SteeringChassis/Graph/steering_wheel_controller/break_3_vector.outputs:z>,
+                ]
+                custom double inputs:Desired_Linear_Velocity_X
+                prepend double inputs:Desired_Linear_Velocity_X.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/break_3_vector_01.outputs:x>,
+                    </SteeringChassis/Graph/steering_wheel_controller/break_3_vector_01.outputs:x>,
+                ]
+                custom double inputs:Desired_Linear_Velocity_Y
+                prepend double inputs:Desired_Linear_Velocity_Y.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/break_3_vector_01.outputs:y>,
+                    </SteeringChassis/Graph/steering_wheel_controller/break_3_vector_01.outputs:y>,
+                ]
+                custom uint inputs:execIn (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                prepend uint inputs:execIn.connect = [
+                    </Agilex_Ranger_Mini/steering_wheel_controller/OnPlaybackTick.outputs:tick>,
+                    </SteeringChassis/Graph/steering_wheel_controller/on_playback_tick.outputs:tick>,
+                ]
+                custom double inputs:linearGain = 1
+                custom string inputs:script = """# This script is executed the first time the script node computes, or the next time
+# it computes after this script is modified or the 'Reset' button is pressed.
+#
+# The following callback functions may be defined in this script:
+#     setup(db): Called immediately after this script is executed
+#     compute(db): Called every time the node computes (should always be defined)
+#     cleanup(db): Called when the node is deleted or the reset button is pressed
+# Available variables:
+#    db: og.Database The node interface, attributes are exposed like db.inputs.foo
+#                    Use db.log_error, db.log_warning to report problems.
+#    og: The omni.graph.core module
+
+import numpy as np
+
+# S1 omni chassis real geometry (from xacro/components/omni_chassis.xacro)
+_HALF_WHEELBASE_X = 0.247  # m
+_HALF_TRACK_Y = 0.247      # m
+_WHEEL_RADIUS = 0.0827     # m
+
+# linearGain now scales wheel angular velocity [rad/s] after kinematic conversion v/r
+_DEFAULT_LINEAR_GAIN = 1.0
+_DEFAULT_ANGULAR_GAIN = 1.0
+# 轮速相对上一帧变号（等价解翻转 / 反向）时，暂时压低滚动速度减轻冲击；可在 Graph 上接 flipVelocityScale
+_DEFAULT_FLIP_VELOCITY_SCALE = 0.35
+
+_SPEED_EPS = 1e-6
+
+_prev_pos_cmd = np.zeros(4)
+_prev_vel_unscaled = np.zeros(4)
+_has_prev_steer = False
+
+
+def _wrap_to_pi(angle):
+    return (angle + np.pi) % (2 * np.pi) - np.pi
+
+
+def _angle_diff(target, reference):
+    return _wrap_to_pi(target - reference)
+
+
+def _pick_steer_and_wheel_speed(raw_angle, speed, ref_angle):
+    \"\"\"(θ, v) 与 (θ+π, -v) 运动学等价，选与 ref 夹角变化更小的一组。\"\"\"
+    a = _wrap_to_pi(raw_angle)
+    va = speed
+    b = _wrap_to_pi(raw_angle + np.pi)
+    vb = -speed
+    da = abs(_angle_diff(a, ref_angle))
+    db = abs(_angle_diff(b, ref_angle))
+    if db < da:
+        return b, vb
+    return a, va
+
+
+def setup(db):
+    global _prev_pos_cmd, _prev_vel_unscaled, _has_prev_steer
+    _prev_pos_cmd = np.zeros(4)
+    _prev_vel_unscaled = np.zeros(4)
+    _has_prev_steer = False
+
+
+def cleanup(db):
+    global _has_prev_steer, _prev_vel_unscaled
+    _has_prev_steer = False
+    _prev_vel_unscaled = np.zeros(4)
+
+
+def compute(db):
+    global _prev_pos_cmd, _prev_vel_unscaled, _has_prev_steer
+
+    linear_gain = float(getattr(db.inputs, \"linearGain\", _DEFAULT_LINEAR_GAIN))
+    angular_gain = float(getattr(db.inputs, \"angularGain\", _DEFAULT_ANGULAR_GAIN))
+    flip_vel_scale = float(getattr(db.inputs, \"flipVelocityScale\", _DEFAULT_FLIP_VELOCITY_SCALE))
+    flip_vel_scale = max(0.0, min(1.0, flip_vel_scale))
+
+    pos_cmd = np.zeros(4)
+    vel_cmd = np.zeros(4)
+
+    vx = db.inputs.Desired_Linear_Velocity_X
+    vy = db.inputs.Desired_Linear_Velocity_Y
+    omega_cmd = db.inputs.Desired_Angular_Velocity
+    omega = omega_cmd * angular_gain
+
+    wheel_positions = np.array(
+        [
+            [_HALF_WHEELBASE_X, -_HALF_TRACK_Y],  # 1: fr
+            [_HALF_WHEELBASE_X, _HALF_TRACK_Y],   # 2: fl
+            [-_HALF_WHEELBASE_X, -_HALF_TRACK_Y], # 3: rr
+            [-_HALF_WHEELBASE_X, _HALF_TRACK_Y],  # 4: rl
+        ]
+    )
+
+    for i in range(4):
+        x_i, y_i = wheel_positions[i]
+
+        vx_angular = -omega * y_i
+        vy_angular = omega * x_i
+
+        vx_total = vx + vx_angular
+        vy_total = vy + vy_angular
+
+        angle = np.arctan2(vy_total, vx_total)
+        speed = np.linalg.norm([vx_total, vy_total])
+
+        if speed < _SPEED_EPS:
+            pos_cmd[i] = _prev_pos_cmd[i] if _has_prev_steer else 0.0
+            vel_cmd[i] = 0.0
+        else:
+            ref = _prev_pos_cmd[i] if _has_prev_steer else 0.0
+            wheel_omega = speed / _WHEEL_RADIUS if _WHEEL_RADIUS > _SPEED_EPS else 0.0
+            pos_cmd[i], vel_cmd[i] = _pick_steer_and_wheel_speed(angle, wheel_omega, ref)
+            if _has_prev_steer:
+                pv = _prev_vel_unscaled[i]
+                nv = vel_cmd[i]
+                if (
+                    abs(pv) > _SPEED_EPS
+                    and abs(nv) > _SPEED_EPS
+                    and pv * nv < 0
+                    and flip_vel_scale < 1.0
+                ):
+                    vel_cmd[i] *= flip_vel_scale
+
+    vel_cmd[:] *= linear_gain
+
+    if np.linalg.norm([vx, vy]) < 0.0001 and abs(omega_cmd) < 0.0001:
+        pos_cmd[:] = 0
+        vel_cmd[:] = 0
+
+    inv_gain = 1.0 / linear_gain if linear_gain != 0.0 else 0.0
+    _prev_vel_unscaled = vel_cmd * inv_gain
+    _prev_pos_cmd = pos_cmd.copy()
+    _has_prev_steer = True
+
+    db.outputs.Steer_Position_Command = pos_cmd
+    db.outputs.Steer_Joints = [
+        \"wheel_steering_joint1\",
+        \"wheel_steering_joint2\",
+        \"wheel_steering_joint3\",
+        \"wheel_steering_joint4\",
+    ]
+    db.outputs.Wheel_Velocity_Command = vel_cmd
+    db.outputs.Wheel_Joints = [
+        \"wheel_driving_joint1\",
+        \"wheel_driving_joint2\",
+        \"wheel_driving_joint3\",
+        \"wheel_driving_joint4\",
+    ]
+    return True
+"""
+                custom token inputs:scriptPath = "./steering_wheel_controller.py"
+                custom bool inputs:usePath = 0
+                token node:type = "omni.graph.scriptnode.ScriptNode"
+                int node:typeVersion = 2
+                custom uint outputs:execOut (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                custom token[] outputs:Steer_Joints
+                custom double[] outputs:Steer_Position_Command
+                custom token[] outputs:Wheel_Joints
+                custom double[] outputs:Wheel_Velocity_Command
+                custom bool state:omni_initialized
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (1377.3826, 299.50842)
+            }
+
+            def OmniGraphNode "on_playback_tick" (
+                prepend apiSchemas = ["NodeGraphNodeAPI"]
+            )
+            {
+                token node:type = "omni.graph.action.OnPlaybackTick"
+                int node:typeVersion = 2
+                custom double outputs:deltaSeconds
+                custom double outputs:frame
+                custom uint outputs:tick (
+                    customData = {
+                        bool isExecution = 1
+                    }
+                )
+                custom double outputs:time
+                uniform token ui:nodegraph:node:expansionState = "open"
+                uniform float2 ui:nodegraph:node:pos = (335.80505, 467.0447)
+            }
+        }
+    }
+    variantSet "Physics" = {
+        "None" (
+            prepend references = @./configuration/SteeringChassis_base.usd@
+        ) {
+            over "joints" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "PhysX" (
+            prepend payload = @./configuration/SteeringChassis_physics.usd@
+        ) {
+
+        }
+    }
+    variantSet "Sensor" = {
+        "None" {
+
+        }
+        "Sensors" (
+            prepend payload = @./configuration/SteeringChassis_sensor.usd@
+        ) {
+
+        }
+    }
+    variantSet "Robot" = {
+        "None" {
+
+        }
+        "Robot" (
+            prepend payload = @./configuration/SteeringChassis_robot.usd@
+        ) {
+
+        }
+    }
+}
+
+def "Render" (
+    hide_in_stage_window = true
+    no_delete = true
+)
+{
+    def "OmniverseKit"
+    {
+        def "HydraTextures" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            def RenderProduct "omni_kit_widget_viewport_ViewportTexture_0" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </OmniverseKit_Persp>
+                token omni:rtx:ambientOcclusion:denoiserMode = "none"
+                token omni:rtx:background:source:texture:textureMode = "repeatMirrored"
+                token omni:rtx:background:source:type = "domeLight"
+                bool omni:rtx:debug:view:pixelDebug:enableFixedTextPos = 1
+                token omni:rtx:directLighting:sampledLighting:denoisingTechnique = "None"
+                bool omni:rtx:dlss:frameGeneration = 0
+                bool omni:rtx:indirectDiffuse:denoiser:enabled = 0
+                string omni:rtx:material:db:rtSensorNameToIdMap = "DefaultMaterial:0;AsphaltStandardMaterial:1;AsphaltWeatheredMaterial:2;VegetationGrassMaterial:3;WaterStandardMaterial:4;GlassStandardMaterial:5;FiberGlassMaterial:6;MetalAlloyMaterial:7;MetalAluminumMaterial:8;MetalAluminumOxidizedMaterial:9;PlasticStandardMaterial:10;RetroMarkingsMaterial:11;RetroSignMaterial:12;RubberStandardMaterial:13;SoilClayMaterial:14;ConcreteRoughMaterial:15;ConcreteSmoothMaterial:16;OakTreeBarkMaterial:17;FabricStandardMaterial:18;PlexiGlassStandardMaterial:19;MetalSilverMaterial:20"
+                bool omni:rtx:material:db:syncLoads = 1
+                token omni:rtx:post:dlss:execMode = "performance"
+                bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
+                bool omni:rtx:post:registeredCompositing:invertToneMap = 1
+                bool omni:rtx:pt:adaptiveSampling:filterError = 0
+                uint omni:rtx:pt:adaptiveSampling:fixedSppIterations = 2
+                bool omni:rtx:pt:lightcache:cached:dontResolveConflicts = 1
+                int omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                int omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                bool omni:rtx:reflections:denoiser:enabled = 0
+                token omni:rtx:rendermode = "RealTimePathTracing"
+                color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
+                bool omni:rtx:rt:demoire = 0
+                bool omni:rtx:rt:lightcache:spatialCache:dontResolveConflicts = 1
+                int omni:rtx:rt:sss:samples = 1
+                uint omni:rtx:rtpt:maxVolumeBounces = 15
+                float omni:rtx:rtpt:modulatingRoughnessThreshold = 0.08
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                bool omni:rtx:scene:hydra:mdlMaterialWarmup = 1
+                uint omni:rtx:viewTile:limit = 4294967295
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1920, 1147)
+            }
+        }
+    }
+
+    def RenderSettings "OmniverseGlobalRenderSettings" (
+        prepend apiSchemas = ["OmniRtxSettingsGlobalRtAdvancedAPI_1", "OmniRtxSettingsGlobalPtAdvancedAPI_1"]
+        no_delete = true
+    )
+    {
+        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+    }
+
+    def "Vars"
+    {
+        def RenderVar "LdrColor" (
+            hide_in_stage_window = true
+            no_delete = true
+        )
+        {
+            uniform string sourceName = "LdrColor"
+        }
+    }
+}
+
+over "OmniverseKit_Persp" (
+    prepend apiSchemas = ["OmniRtxCameraAutoExposureAPI_1", "OmniRtxCameraExposureAPI_1"]
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (0.01, 10000000)
+    float exposure:fStop = 5
+    float exposure:responsivity = 1.1026709
+    float exposure:time = 0.02
+    float focalLength = 18.147562
+    float focusDistance = 400
+    custom uniform vector3d omni:kit:centerOfInterest = (8.982465022144162e-18, 7.150437491287042e-17, -1.40637771421223)
+    float3 xformOp:rotateXYZ = (54.73561, -6.3611094e-15, 135)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0.6421409600870097, 0.7702632802189712, 1.02351342039129)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Front" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (90, -1.2722219e-14, 90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (5, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Right" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (90, -1.41245e-30, 1.2722219e-14)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, -5, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+over "OmniverseKit_Top" (
+    customData = {
+        dictionary omni = {
+            dictionary kit = {
+                bool hide_in_stage_window = 1
+                bool no_delete = 1
+            }
+        }
+    }
+    hide_in_stage_window = true
+    kind = "component"
+    no_delete = true
+)
+{
+    float2 clippingRange = (1, 10000000)
+    float horizontalAperture = 50
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -5)
+    token projection = "orthographic"
+    float verticalAperture = 50
+    float3 xformOp:rotateXYZ = (-1.2722219e-14, -7.016709e-15, -90)
+    float3 xformOp:scale = (1, 1, 1)
+    double3 xformOp:translate = (0, 0, 5)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
