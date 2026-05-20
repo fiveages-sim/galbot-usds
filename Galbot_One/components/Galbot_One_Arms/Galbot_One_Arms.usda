@@ -7,8 +7,8 @@
                 double radius = 5
             }
             dictionary Perspective = {
-                double3 position = (0.8968095497019115, -1.6746540902903393, 1.3829194144873809)
-                double3 target = (-0.06084839568086231, -0.330606246916364, -0.0563212658800365)
+                double3 position = (0.672652559004274, -1.0059705467538183, 0.39353206343168146)
+                double3 target = (0.12827304039206067, -1.0950523540937385, 0.04986945285462263)
             }
             dictionary Right = {
                 double3 position = (0, -5, 0)
@@ -21,9 +21,9 @@
             string boundCamera = "/OmniverseKit_Persp"
         }
         dictionary metricsAssembler = {
-            dictionary "/Galbot_One_Arms/left_link7/left_end_effector_mount_link/left_flange_base_link/left_camera_flange_link/left_camera_link/d415" = {
+            dictionary "/Galbot_One_Arms/left_link7/left_flange_link/left_camera_link/d415" = {
             }
-            dictionary "/Galbot_One_Arms/right_link7/right_end_effector_mount_link/right_flange_base_link/right_camera_flange_link/right_camera_link/d415" = {
+            dictionary "/Galbot_One_Arms/right_link7/right_flange_link/right_camera_link/d415" = {
             }
             int version = 1
         }
@@ -44,102 +44,50 @@
 
 def Xform "Galbot_One_Arms" (
     variants = {
-        string EE_Right = "Hitbot_Gripper_right"
         string EE_left = "Hitbot_Gripper_left"
+        string EE_right = "Hitbot_Gripper_right"
         string Physics = "PhysX"
         string Robot = "Robot"
         string Sensor = "Sensors"
     }
-    prepend variantSets = ["Physics", "Sensor", "Robot", "EE_left", "EE_right", "EE_Right"]
+    prepend variantSets = ["Physics", "Sensor", "Robot", "EE_left", "EE_right"]
 )
 {
-    string[] isaac:changelog (
-        displayName = "Changelog"
-    )
-    string isaac:description (
-        displayName = "Description"
-    )
-    token isaac:license (
-        displayName = "License"
-    )
-    string isaac:namespace (
-        displayName = "Namespace"
-    )
-    rel isaac:physics:robotJoints (
-        displayName = "Robot Joints"
-    )
-    rel isaac:physics:robotLinks (
-        displayName = "Robot Links"
-    )
-    token isaac:robotType (
-        displayName = "Robot Type"
-    )
-    string isaac:source (
-        displayName = "Source"
-    )
-    string isaac:version (
-        displayName = "Version"
-    )
-
-    over "right_link7"
+    over "left_link7"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (-0.49999989569183545, -0.4999999552965158, 0.5000001341104555, -0.5000000149011622)
-        double3 xformOp:translate = (3.166496753692627e-8, -0.9159997701644897, 2.9802322387695312e-8)
-
-        over "right_end_effector_mount_link"
+        over "left_flange_link"
         {
-            over "right_flange_base_link"
+            over "left_camera_link"
             {
-                over "right_camera_flange_link"
+                def "d415" (
+                    prepend payload = @../../../../../sensors/d415.usd@
+                )
                 {
-                    over "right_camera_link"
-                    {
-                        def "d415" (
-                            prepend payload = @../../../../FaSim-Isaac/robots/sensors/d415.usd@
-                        )
-                        {
-                            quatf xformOp:orient = (1, 0, 0, 0)
-                            double xformOp:rotateX:unitsResolve = 90
-                            float3 xformOp:scale = (1, 1, 1)
-                            double3 xformOp:translate = (0, 0, 0)
-                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
-                        }
-                    }
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    double xformOp:rotateX:unitsResolve = 90
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
                 }
             }
         }
     }
 
-    over "left_link7"
+    over "right_link7"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (0.49999997392292866, -0.49999989941715295, 0.5000001974403877, 0.4999999292194761)
-        double3 xformOp:translate = (1.1594966053962708e-7, 0.9159997701644897, -1.1920928955078125e-7)
-
-        over "left_end_effector_mount_link"
+        over "right_flange_link"
         {
-            over "left_flange_base_link"
+            over "right_camera_link"
             {
-                over "left_camera_flange_link"
+                def "d415" (
+                    prepend payload = @../../../../../sensors/d415.usd@
+                )
                 {
-                    over "left_camera_link"
-                    {
-                        def "d415" (
-                            prepend payload = @../../../../FaSim-Isaac/robots/sensors/d415.usd@
-                        )
-                        {
-                            quatf xformOp:orient = (1, 0, 0, 0)
-                            double xformOp:rotateX:unitsResolve = 90
-                            float3 xformOp:scale = (1, 1, 1)
-                            double3 xformOp:translate = (0, 0, 0)
-                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
-                        }
-                    }
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    double xformOp:rotateX:unitsResolve = 90
+                    float3 xformOp:scale = (1, 1, 1)
+                    double3 xformOp:translate = (0, 0, 0)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale", "xformOp:rotateX:unitsResolve"]
                 }
             }
         }
@@ -152,18 +100,10 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float drive:angular:physics:targetPosition = -0
-            bool[] isaac:actuator (
-                displayName = "Actuator"
+            string isaac:nameOverride (
+                displayName = "Name Override"
+                doc = "Name override for prim lookup in base name search"
             )
-            string isaac:NameOverride (
-                displayName = "Joint Name Override"
-            )
-            token[] isaac:physics:DofOffsetOpOrder (
-                displayName = "Dof Offset Op Order"
-            )
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -173,8 +113,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -90
-            float physics:upperLimit = 104.85127
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -184,9 +122,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float drive:angular:physics:targetPosition = -0
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -196,9 +131,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float drive:angular:physics:targetPosition = -0
-            float physics:lowerLimit = -120.32112
-            float physics:upperLimit = 120.32112
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -208,8 +140,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -219,8 +149,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -90
-            float physics:upperLimit = 90
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -230,8 +158,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -241,8 +167,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -252,8 +176,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -90
-            float physics:upperLimit = 104.85127
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -263,17 +185,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            bool[] isaac:actuator (
-                displayName = "Actuator"
-            )
-            string isaac:NameOverride (
-                displayName = "Joint Name Override"
-            )
-            token[] isaac:physics:DofOffsetOpOrder (
-                displayName = "Dof Offset Op Order"
-            )
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -283,8 +194,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -120.32112
-            float physics:upperLimit = 120.32112
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -294,8 +203,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -305,8 +212,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -90
-            float physics:upperLimit = 90
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -316,8 +221,6 @@ def Xform "Galbot_One_Arms" (
             float drive:angular:physics:damping = 60000
             float drive:angular:physics:maxForce = 200
             float drive:angular:physics:stiffness = 600000
-            float physics:lowerLimit = -180
-            float physics:upperLimit = 180
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
         }
@@ -325,126 +228,54 @@ def Xform "Galbot_One_Arms" (
 
     over "base_link"
     {
-        string isaac:nameOverride (
-            displayName = "Name Override"
-        )
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        float physxArticulation:sleepThreshold = 0.00005
-        int physxArticulation:solverPositionIterationCount = 64
-        int physxArticulation:solverVelocityIterationCount = 4
-        float physxArticulation:stabilizationThreshold = 0.00001
-        quatd xformOp:orient = (1, 0, 0, 0)
-        double3 xformOp:translate = (-4.889443516731262e-8, -9.313225746154785e-9, 1.6274952940875664e-7)
     }
 
     over "left_link1"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (5.6345018712048624e-8, 5.122274227384549e-9, 0.7071067811865464, 0.7071067811865465)
-        double3 xformOp:translate = (-5.532638169825077e-8, 0.20599989593029022, 1.0523945093154907e-7)
     }
 
     over "left_link2"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (4.121102398796726e-8, 0.9999999999999948, -4.470348358154273e-8, -8.44011083245273e-8)
-        double3 xformOp:translate = (-5.4249539971351624e-8, 0.20599991083145142, 1.0523945093154907e-7)
     }
 
     over "left_link3"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (-0.49999998137353774, 0.5000001154839957, 0.49999993667006287, 0.4999999664723848)
-        double3 xformOp:translate = (1.862645149230957e-9, 0.5559998154640198, -2.6542693376541138e-8)
     }
 
     over "left_link4"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (1.164153279501688e-9, -0.7071067215818948, 1.1344673306190503e-7, 0.7071068407911862)
-        double3 xformOp:translate = (-4.656612873077393e-10, 0.5559998154640198, -1.9907020032405853e-8)
     }
 
     over "left_link5"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (-0.5000000149011576, 0.5000000745058064, 0.49999995529651325, 0.49999995529651314)
-        double3 xformOp:translate = (9.872019290924072e-8, 0.9159997701644897, -1.247502723344951e-7)
     }
 
     over "left_link6"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (-1.9324947136797124e-8, -0.7071066321749068, 1.1081284103090347e-7, 0.7071069301981482)
-        double3 xformOp:translate = (1.1165684554725885e-7, 0.9159998297691345, -1.1204883776372299e-7)
     }
 
     over "right_link1"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (0.7071067336835178, 0.707106828689573, -2.1536834537982874e-8, 3.2205207389779296e-8)
-        double3 xformOp:translate = (-4.873436409980059e-8, -0.2059999406337738, 1.6298145055770874e-7)
     }
 
     over "right_link2"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (2.7241175598772466e-8, 2.421438405342284e-8, 0.9999999999999967, 7.450579708745488e-8)
-        double3 xformOp:translate = (-4.7497451305389404e-8, -0.2059999704360962, 1.648440957069397e-7)
     }
 
     over "right_link3"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (0.49999996274709296, 0.5000000521540612, 0.5000000521540611, -0.4999999329447733)
-        double3 xformOp:translate = (-4.190951585769653e-8, -0.5559999346733093, 1.0756775736808777e-7)
     }
 
     over "right_link4"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (-0.7071066740788613, -6.117625162005381e-8, 0.7071068882942148, 1.490116119384754e-8)
-        double3 xformOp:translate = (-3.67872416973114e-8, -0.5559999346733093, 1.1356314644217491e-7)
     }
 
     over "right_link5"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (0.5000000521540695, 0.5000000223517373, 0.5000000223517375, -0.4999999031424425)
-        double3 xformOp:translate = (-1.862645149230957e-9, -0.9159998893737793, 1.7627257875574287e-8)
     }
 
     over "right_link6"
     {
-        vector3f physics:angularVelocity = (0, 0, 0)
-        rel physics:simulationOwner
-        vector3f physics:velocity = (0, 0, 0)
-        quatd xformOp:orient = (0.7071067932881578, 6.74917828291651e-8, -0.707106769084927, -9.819632396101904e-8)
-        double3 xformOp:translate = (2.98732629744336e-8, -0.9159998297691345, 3.390368874534033e-8)
     }
 
     over "Hitbot_Gripper_left"
@@ -479,74 +310,36 @@ def Xform "Galbot_One_Arms" (
 
         over "gripper_base"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (0.9999999999999906, 1.1819034284148017e-7, -4.656252732241961e-9, 6.987956488226323e-8)
-            double3 xformOp:translate = (-1.1348725226234535e-7, 1.5366787950608668e-8, 1.7229441753472877e-8)
         }
 
         over "gripper_link1"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.0594653170864125e-7, 0.9277619214349628, -0.3731726371738412, -1.2468842725282665e-7)
-            double3 xformOp:translate = (0.12182999914884984, -0.019999988997882124, 8.526861709982043e-9)
         }
 
         over "gripper_link2"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.5337675590126473e-7, 0.9277617607614987, -0.37317303663139667, -4.798334640975145e-8)
-            double3 xformOp:translate = (0.1367998214662085, -0.009999976640260816, 8.467814123238377e-9)
         }
 
         over "gripper_link3"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.576452383576468e-7, 0.9999999999999873, 2.7759645055007794e-9, 2.245599132996205e-8)
-            double3 xformOp:translate = (0.18369641377307566, -0.055008001532159144, -4.7600710573787964e-9)
         }
 
         over "gripper_link4"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.532474693198241e-7, 0.9277616942486945, 0.3731732019917391, -3.50930345342659e-8)
-            double3 xformOp:translate = (0.12183332329988938, 0.020000006383901803, 1.2437315044450064e-8)
         }
 
         over "gripper_link5"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.0107754360704952e-7, 0.9277616942486979, 0.3731732019917488, 2.9908158961152356e-8)
-            double3 xformOp:translate = (0.136799933820968, 0.010000008011584724, 1.3391519336782914e-8)
         }
 
         over "gripper_link6"
         {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.0749470152321042e-7, 0.9999999999999727, -2.0795830540194552e-7, -2.347536002085113e-10)
-            double3 xformOp:translate = (0.1836964952769169, 0.055008061323606056, 2.1902264765565e-8)
         }
 
         over "joints"
         {
             over "gripper_joint"
             {
-                float drive:angular:physics:targetPosition = 0
-                float physics:lowerLimit = 0
-                float physics:upperLimit = 42.971832
                 float state:angular:physics:position = 0
                 float state:angular:physics:velocity = 0
             }
@@ -583,7 +376,7 @@ def Xform "Galbot_One_Arms" (
         }
     }
 
-    over "Hitbot_Gripprer_right"
+    over "Hitbot_Gripper_right"
     {
         string[] isaac:changelog (
             displayName = "Changelog"
@@ -612,110 +405,6 @@ def Xform "Galbot_One_Arms" (
         string isaac:version (
             displayName = "Version"
         )
-
-        over "gripper_base"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (0.9999999999999916, 1.200568626225809e-7, -1.5699990532229164e-8, 4.706644249157738e-8)
-            double3 xformOp:translate = (5.722045282041677e-9, 2.0489095872376907e-8, -3.725295381507557e-9)
-        }
-
-        over "gripper_link1"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-9.967582997299682e-8, 0.9238795687426076, -0.38268334489490186, -1.1618807318150961e-7)
-            double3 xformOp:translate = (0.12182999348640577, -0.019999960626374855, -8.983674222813795e-9)
-        }
-
-        over "gripper_link2"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.3268748782474134e-7, 0.9238795335168547, -0.38268342993740967, -3.6637429077986006e-8)
-            double3 xformOp:translate = (0.1368000570535668, -0.009999959957606096, -4.725700805569688e-9)
-        }
-
-        over "gripper_link3"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.352446103384768e-7, 0.9999999999999879, 7.19491735439725e-8, 2.6387807745456206e-8)
-            double3 xformOp:translate = (0.18276203584444461, -0.05596189787913949, -1.5727043664041527e-8)
-        }
-
-        over "gripper_link4"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.1053961762024956e-7, 0.9238794827126375, 0.3826835525896263, 2.620524259897578e-9)
-            double3 xformOp:translate = (0.12183332896232635, 0.020000023578598206, 2.000711110927332e-9)
-        }
-
-        over "gripper_link5"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.2457567282725014e-7, 0.9238795125149614, 0.38268348064046376, 4.173820963507767e-8)
-            double3 xformOp:translate = (0.13680005586147392, 0.010000024694200138, 2.1455384293216832e-11)
-        }
-
-        over "gripper_link6"
-        {
-            vector3f physics:angularVelocity = (0, 0, 0)
-            rel physics:simulationOwner
-            vector3f physics:velocity = (0, 0, 0)
-            quatd xformOp:orient = (-1.3242860757417148e-7, 0.9999999999999899, -5.4491380088887535e-8, 3.471487548443452e-10)
-            double3 xformOp:translate = (0.1827620291732588, 0.055961960644242144, 1.1231902691942743e-8)
-        }
-
-        over "joints"
-        {
-            over "gripper_joint"
-            {
-                float physics:lowerLimit = 0
-                float physics:upperLimit = 42.971832
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-
-            over "gripper_joint2"
-            {
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-
-            over "gripper_joint4"
-            {
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-
-            over "gripper_joint5"
-            {
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-
-            over "gripper_joint3"
-            {
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-
-            over "gripper_joint6"
-            {
-                float state:angular:physics:position = 0
-                float state:angular:physics:velocity = 0
-            }
-        }
     }
     variantSet "Physics" = {
         "None" (
@@ -766,9 +455,9 @@ def Xform "Galbot_One_Arms" (
 
         }
     }
-    variantSet "EE_Right" = {
+    variantSet "EE_right" = {
         "Hitbot_Gripper_right" (
-            prepend payload = @./configuration/Galbot_One_Arms_EE_Right_Hitbot_Gripper_right.usd@
+            prepend payload = @./configuration/Galbot_One_Arms_EE_right_Hitbot_Gripper_right.usd@
         ) {
             prepend rel isaac:physics:robotJoints = </Galbot_One_Arms/Hitbot_Gripper_right>
             prepend rel isaac:physics:robotLinks = </Galbot_One_Arms/Hitbot_Gripper_right>
@@ -806,14 +495,16 @@ def "Render" (
                 token omni:rtx:directLighting:sampledLighting:denoisingTechnique = "None"
                 bool omni:rtx:dlss:frameGeneration = 0
                 bool omni:rtx:indirectDiffuse:denoiser:enabled = 0
+                string omni:rtx:material:db:rtSensorNameToIdMap = "DefaultMaterial:0;AsphaltStandardMaterial:1;AsphaltWeatheredMaterial:2;VegetationGrassMaterial:3;WaterStandardMaterial:4;GlassStandardMaterial:5;FiberGlassMaterial:6;MetalAlloyMaterial:7;MetalAluminumMaterial:8;MetalAluminumOxidizedMaterial:9;PlasticStandardMaterial:10;RetroMarkingsMaterial:11;RetroSignMaterial:12;RubberStandardMaterial:13;SoilClayMaterial:14;ConcreteRoughMaterial:15;ConcreteSmoothMaterial:16;OakTreeBarkMaterial:17;FabricStandardMaterial:18;PlexiGlassStandardMaterial:19;MetalSilverMaterial:20"
                 bool omni:rtx:material:db:syncLoads = 1
                 token omni:rtx:post:dlss:execMode = "performance"
                 bool omni:rtx:post:registeredCompositing:invertColorCorrection = 1
                 bool omni:rtx:post:registeredCompositing:invertToneMap = 1
                 bool omni:rtx:pt:adaptiveSampling:filterError = 0
                 uint omni:rtx:pt:adaptiveSampling:fixedSppIterations = 2
-                uint omni:rtx:pt:maxSamplesPerLaunch = 2073600
-                uint omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
+                bool omni:rtx:pt:lightcache:cached:dontResolveConflicts = 1
+                int omni:rtx:pt:maxSamplesPerLaunch = 2073600
+                int omni:rtx:pt:mgpu:maxPixelsPerRegionExponent = 12
                 bool omni:rtx:reflections:denoiser:enabled = 0
                 token omni:rtx:rendermode = "RealTimePathTracing"
                 color3f omni:rtx:rt:ambientLight:color = (0.1, 0.1, 0.1)
@@ -825,9 +516,10 @@ def "Render" (
                 float omni:rtx:rtpt:modulatingRoughnessThreshold = 0.08
                 bool omni:rtx:scene:hydra:materialSyncLoads = 1
                 bool omni:rtx:scene:hydra:mdlMaterialWarmup = 1
+                uint omni:rtx:viewTile:limit = 4294967295
                 rel orderedVars = </Render/Vars/LdrColor>
                 custom bool overrideClipRange = 0
-                uniform int2 resolution = (2048, 1080)
+                uniform int2 resolution = (1920, 1111)
             }
         }
     }
@@ -873,11 +565,17 @@ over "OmniverseKit_Persp" (
     float exposure:time = 0.02
     float focalLength = 18.147562
     float focusDistance = 400
-    custom uniform vector3d omni:kit:centerOfInterest = (0, 0, -2.1897458943122725)
-    float3 xformOp:rotateXYZ = (48.908474, -2.862499e-14, 35.470547)
+    custom uniform vector3d omni:kit:centerOfInterest = (0, 9.679490455297622e-17, -0.6499143163464327)
+    float3 xformOp:rotateXYZ = (58.076843, -6.3611094e-15, 99.293465)
     float3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (0.8968095497019115, -1.6746540902903393, 1.3829194144873809)
+    double3 xformOp:translate = (0.672652559004274, -1.0059705467538183, 0.39353206343168146)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def PhysicsScene "PhysicsScene" (
+    prepend apiSchemas = ["PhysxSceneAPI", "NewtonSceneAPI"]
+)
+{
 }
 
 over "OmniverseKit_Front" (
@@ -953,11 +651,5 @@ over "OmniverseKit_Top" (
     float3 xformOp:scale = (1, 1, 1)
     double3 xformOp:translate = (0, 0, 5)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-}
-
-def PhysicsScene "PhysicsScene" (
-    prepend apiSchemas = ["PhysxSceneAPI", "NewtonSceneAPI"]
-)
-{
 }
 

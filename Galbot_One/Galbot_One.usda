@@ -7,8 +7,8 @@
                 double radius = 5
             }
             dictionary Perspective = {
-                double3 position = (3.1022586971834, -0.281288158594944, 1.1571656249672164)
-                double3 target = (-4.696943692037534, -2.0439387932128636, -0.29275857091287816)
+                double3 position = (3.6560254953891658, 0.9205718642621784, 1.3897358922221845)
+                double3 target = (-4.943284682929814, -1.022906300125396, -0.2089337246420766)
             }
             dictionary Right = {
                 double3 position = (0, -5, 0)
@@ -40,8 +40,9 @@
 def Xform "Galbot_One" (
     prepend apiSchemas = ["PhysicsArticulationRootAPI", "PhysxArticulationAPI"]
     variants = {
-        string Arms = "Galbot_Charlie_Arms"
+        string Arms = "Galbot_One_Arms"
         string Base = "Chassis"
+        string Gripper = "None"
         string Physics = "PhysX"
         string Robot = "Robot"
         string Sensor = "Sensors"
@@ -91,219 +92,270 @@ def Xform "Galbot_One" (
             displayName = "Name Override"
             doc = "Name override for prim lookup in base name search"
         )
+        rel physics:simulationOwner
     }
 
     over "leg_link1"
     {
+        rel physics:simulationOwner
     }
 
     over "Chassis"
     {
         over "base_link"
         {
+            rel physics:simulationOwner
         }
 
         over "wheel_1"
         {
+            rel physics:simulationOwner
         }
 
         over "OmniWheel_10"
         {
             over "wheel"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_0"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_1"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_2"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_3"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_4"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_5"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_6"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_7"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_8"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_9"
             {
+                rel physics:simulationOwner
             }
         }
 
         over "wheel_2"
         {
+            rel physics:simulationOwner
         }
 
         over "OmniWheel_11"
         {
             over "wheel"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_0"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_1"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_2"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_3"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_4"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_5"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_6"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_7"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_8"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_9"
             {
+                rel physics:simulationOwner
             }
         }
 
         over "wheel_3"
         {
+            rel physics:simulationOwner
         }
 
         over "OmniWheel_12"
         {
             over "wheel"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_0"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_1"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_2"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_3"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_4"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_5"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_6"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_7"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_8"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_9"
             {
+                rel physics:simulationOwner
             }
         }
 
         over "wheel_4"
         {
+            rel physics:simulationOwner
         }
 
         over "OmniWheel_13"
         {
             over "wheel"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_0"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_1"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_2"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_3"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_4"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_5"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_6"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_7"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_8"
             {
+                rel physics:simulationOwner
             }
 
             over "wheel_passive_9"
             {
+                rel physics:simulationOwner
             }
         }
 
@@ -362,22 +414,27 @@ def Xform "Galbot_One" (
 
     over "leg_link2"
     {
+        rel physics:simulationOwner
     }
 
     over "leg_link3"
     {
+        rel physics:simulationOwner
     }
 
     over "leg_link4"
     {
+        rel physics:simulationOwner
     }
 
     over "head_link1"
     {
+        rel physics:simulationOwner
     }
 
     over "head_link2"
     {
+        rel physics:simulationOwner
     }
 
     over "joints"
@@ -413,6 +470,30 @@ def Xform "Galbot_One" (
         }
 
         over "head_joint2"
+        {
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "body_joint1"
+        {
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "body_joint2"
+        {
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "body_joint3"
+        {
+            float state:angular:physics:position = 0
+            float state:angular:physics:velocity = 0
+        }
+
+        over "body_joint4"
         {
             float state:angular:physics:position = 0
             float state:angular:physics:velocity = 0
@@ -641,40 +722,340 @@ def Xform "Galbot_One" (
         string isaac:version (
             displayName = "Version"
         )
-    }
 
-    def "Galbot_Charlie_Arms" (
-        prepend payload = @./components/Galbot_Charlie_Arms/Galbot_Charlie_Arms.usda@
-    )
-    {
-        string[] isaac:changelog (
-            displayName = "Changelog"
-        )
-        string isaac:description (
-            displayName = "Description"
-        )
-        token isaac:license (
-            displayName = "License"
-        )
-        string isaac:namespace (
-            displayName = "Namespace"
-        )
-        rel isaac:physics:robotJoints (
-            displayName = "Robot Joints"
-        )
-        rel isaac:physics:robotLinks (
-            displayName = "Robot Links"
-        )
-        token isaac:robotType (
-            displayName = "Robot Type"
-        )
-        string isaac:source (
-            displayName = "Source"
-        )
-        string isaac:version (
-            displayName = "Version"
-        )
-        double3 xformOp:translate = (-0.027056, 0.087, 0.565)
+        over "right_link6"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link5"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link4"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link3"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link2"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link5"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link2"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link1"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link1"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "Hitbot_Gripper_right"
+        {
+            over "gripper_base"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link2"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link1"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link4"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link5"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link6"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link3"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "joints"
+            {
+                over "gripper_joint"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint2"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint4"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint5"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint3"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint6"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+            }
+        }
+
+        over "Hitbot_Gripper_left"
+        {
+            over "gripper_link6"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link4"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link1"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link2"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_base"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link5"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "gripper_link3"
+            {
+                rel physics:simulationOwner
+            }
+
+            over "joints"
+            {
+                over "gripper_joint"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint2"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint4"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint5"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint3"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+
+                over "gripper_joint6"
+                {
+                    float state:angular:physics:position = 0
+                    float state:angular:physics:velocity = 0
+                }
+            }
+        }
+
+        over "left_link7"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "base_link"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link4"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link3"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "left_link6"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "right_link7"
+        {
+            rel physics:simulationOwner
+        }
+
+        over "joints"
+        {
+            over "left_joint1"
+            {
+                float drive:angular:physics:targetPosition = -75.5
+                float physics:lowerLimit = -180
+                float physics:upperLimit = 180
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint2"
+            {
+                float drive:angular:physics:targetPosition = 41.600002
+                float physics:lowerLimit = -90
+                float physics:upperLimit = 104.85127
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint3"
+            {
+                float drive:angular:physics:targetPosition = -0.4
+                float physics:lowerLimit = -180
+                float physics:upperLimit = 180
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint4"
+            {
+                float drive:angular:physics:targetPosition = 35.100002
+                float physics:lowerLimit = -120.32112
+                float physics:upperLimit = 120.32112
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint5"
+            {
+                float physics:lowerLimit = -180
+                float physics:upperLimit = 180
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint6"
+            {
+                float physics:lowerLimit = -90
+                float physics:upperLimit = 90
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "left_joint7"
+            {
+                float physics:lowerLimit = -180
+                float physics:upperLimit = 180
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint1"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint2"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint3"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint4"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint5"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint6"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+
+            over "right_joint7"
+            {
+                float state:angular:physics:position = 0
+                float state:angular:physics:velocity = 0
+            }
+        }
     }
     variantSet "Physics" = {
         "None" (
@@ -727,14 +1108,14 @@ def Xform "Galbot_One" (
     }
     variantSet "Arms" = {
         "Galbot_Charlie_Arms" (
-            customData = {
-                string[] variantPrimPaths = ["Galbot_Charlie_Arms"]
-            }
+            prepend payload = @configuration/Galbot_One_Arms_Galbot_Charlie_Arms.usd@
         ) {
+            prepend rel isaac:physics:robotJoints = </Galbot_One/Galbot_Charlie_Arms>
+            prepend rel isaac:physics:robotLinks = </Galbot_One/Galbot_Charlie_Arms>
 
         }
         "Galbot_One_Arms" (
-            prepend payload = @./configuration/Galbot_One_Arms_Galbot_One_Arms.usd@
+            prepend payload = @configuration/Galbot_One_Arms_Galbot_One_Arms.usd@
         ) {
             prepend rel isaac:physics:robotJoints = </Galbot_One/Galbot_One_Arms>
             prepend rel isaac:physics:robotLinks = </Galbot_One/Galbot_One_Arms>
@@ -796,7 +1177,52 @@ def "Render" (
                 uint omni:rtx:viewTile:limit = 4294967295
                 rel orderedVars = </Render/Vars/LdrColor>
                 custom bool overrideClipRange = 0
-                uniform int2 resolution = (1920, 1147)
+                uniform int2 resolution = (1920, 1111)
+            }
+
+            def RenderProduct "Replicator" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </Galbot_One/Chassis/base_link/omni_chassis_base_link/chassis_lidar/Chassis/Example_Rotary>
+                bool omni:rtx:material:db:syncLoads = 1
+                bool omni:rtx:rt:ecoMode:enabled = 0
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1280, 720)
+            }
+
+            def RenderProduct "Replicator_01" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </Galbot_One/Chassis/base_link/omni_chassis_base_link/chassis_lidar/Chassis/Example_Rotary>
+                bool omni:rtx:material:db:syncLoads = 1
+                bool omni:rtx:rt:ecoMode:enabled = 0
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1280, 720)
+            }
+
+            def RenderProduct "Replicator_02" (
+                prepend apiSchemas = ["OmniRtxSettingsCommonAdvancedAPI_1", "OmniRtxSettingsRtAdvancedAPI_1", "OmniRtxSettingsPtAdvancedAPI_1", "OmniRtxPostColorGradingAPI_1", "OmniRtxPostChromaticAberrationAPI_1", "OmniRtxPostBloomPhysicalAPI_1", "OmniRtxPostMatteObjectAPI_1", "OmniRtxPostCompositingAPI_1", "OmniRtxPostDofAPI_1", "OmniRtxPostMotionBlurAPI_1", "OmniRtxPostTvNoiseAPI_1", "OmniRtxPostTonemapIrayReinhardAPI_1", "OmniRtxPostDebugSettingsAPI_1", "OmniRtxDebugSettingsAPI_1"]
+                hide_in_stage_window = true
+                no_delete = true
+            )
+            {
+                rel camera = </Galbot_One/Chassis/base_link/omni_chassis_base_link/chassis_lidar/Chassis/Example_Rotary>
+                bool omni:rtx:material:db:syncLoads = 1
+                bool omni:rtx:rt:ecoMode:enabled = 0
+                bool omni:rtx:scene:hydra:materialSyncLoads = 1
+                rel orderedVars = </Render/Vars/LdrColor>
+                custom bool overrideClipRange = 0
+                uniform int2 resolution = (1280, 720)
             }
         }
     }
@@ -806,7 +1232,12 @@ def "Render" (
         no_delete = true
     )
     {
-        rel products = </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>
+        rel products = [
+            </Render/OmniverseKit/HydraTextures/omni_kit_widget_viewport_ViewportTexture_0>,
+            </Render/OmniverseKit/HydraTextures/Replicator>,
+            </Render/OmniverseKit/HydraTextures/Replicator_01>,
+            </Render/OmniverseKit/HydraTextures/Replicator_02>,
+        ]
     }
 
     def "Vars"
@@ -842,10 +1273,10 @@ over "OmniverseKit_Persp" (
     float exposure:time = 0.02
     float focalLength = 18.147562
     float focusDistance = 400
-    custom uniform vector3d omni:kit:centerOfInterest = (6.148005986193671e-16, 0, -8.126301455246846)
-    float3 xformOp:rotateXYZ = (79.722046, -0, 102.73512)
+    custom uniform vector3d omni:kit:centerOfInterest = (6.778720158167651e-16, 0, -8.9599658181422)
+    float3 xformOp:rotateXYZ = (79.722046, -1.2722219e-14, 102.73512)
     float3 xformOp:scale = (1, 1, 1)
-    double3 xformOp:translate = (3.1022586971834, -0.281288158594944, 1.1571656249672164)
+    double3 xformOp:translate = (3.6560254953891658, 0.9205718642621784, 1.3897358922221845)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 }
 
@@ -922,5 +1353,11 @@ over "OmniverseKit_Top" (
     float3 xformOp:scale = (1, 1, 1)
     double3 xformOp:translate = (0, 0, 5)
     uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+}
+
+def PhysicsScene "PhysicsScene" (
+    prepend apiSchemas = ["PhysxSceneAPI", "NewtonSceneAPI"]
+)
+{
 }
 
