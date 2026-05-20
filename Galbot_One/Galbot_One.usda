@@ -92,270 +92,474 @@ def Xform "Galbot_One" (
             displayName = "Name Override"
             doc = "Name override for prim lookup in base name search"
         )
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (0.9999999999999994, 3.3319755412603196e-8, 9.284197635695418e-25, -1.300917732068451e-10)
+        double3 xformOp:translate = (-8.381903171539307e-9, -2.60770320892334e-8, 1.1920928955078125e-7)
     }
 
     over "leg_link1"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (-0.13528580191671666, 0.13528575757872383, 0.6940444330599478, 0.694044552269231)
+        double3 xformOp:translate = (-1.4901161193847656e-8, 0.08699991554021835, 1.1920928955078125e-7)
     }
 
     over "Chassis"
     {
         over "base_link"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.9999999999999997, -2.5798344604358667e-8, 4.2713220486649565e-11, 7.59872377868456e-10)
+            double3 xformOp:translate = (5.6266784675962356e-8, -6.210803984996183e-8, 1.3887882233110105e-7)
         }
 
         over "wheel_1"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (-0.3826835127502829, 6.440530712009803e-9, 1.5516607583480713e-8, 0.9238794992146453)
+            double3 xformOp:translate = (0.17649311983585358, 0.17649300146102906, 0.07183416292071343)
         }
 
         over "OmniWheel_10"
         {
             over "wheel"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999953, 1.2036897560147099e-8, -1.2054572702762403e-8, 9.505616119395752e-8)
+                double3 xformOp:translate = (-8.016330699245344e-8, 8.370364004695041e-8, 1.6495585442033445e-7)
             }
 
             over "wheel_passive_0"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999986, 1.2035300509140989e-8, -4.373218028668508e-9, 5.2178600687962143e-8)
+                double3 xformOp:translate = (-8.050011224280951e-8, 0.025000076953756, 1.6495585442033445e-7)
             }
 
             over "wheel_passive_1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565111458084, 0.30901701022299327, 3.4206806182445037e-10, 7.343694350252337e-8)
+                double3 xformOp:translate = (-8.570414414266203e-8, 0.02022549756197964, 0.014694788604974751)
             }
 
             over "wheel_passive_2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170044604703, 0.5877852384109385, 2.365577439141243e-8, 5.631192835039009e-8)
+                double3 xformOp:translate = (-7.499902954233306e-8, 0.0077255114736339, 0.023776565790176396)
             }
 
             over "wheel_passive_3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.5877852509271857, 0.8090169953668851, 2.454000657948239e-8, 4.673942732630156e-8)
+                double3 xformOp:translate = (-8.796176251268939e-8, -0.00772534143217582, 0.023776573240756993)
             }
 
             over "wheel_passive_4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.3090169730471398, 0.9510565232249775, 2.992747410774879e-8, 1.5464238392758628e-8)
+                double3 xformOp:translate = (-8.515918184515137e-8, -0.020225340691411797, 0.014694796055555348)
             }
 
             over "wheel_passive_5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-5.558218168482874e-8, 0.9999999999999976, 3.9353043464853494e-8, 1.946300328951503e-8)
+                double3 xformOp:translate = (-7.719232369973739e-8, -0.02499991218065392, 1.6495585442033445e-7)
             }
 
             over "wheel_passive_6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.3090170269799765, 0.951056505701136, 2.5203429243343813e-8, -2.9395925023184112e-8)
+                double3 xformOp:translate = (-8.647627089408694e-8, -0.020225339374322804, -0.014694462418556209)
             }
 
             over "wheel_passive_7"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.5877852475725764, 0.8090169978041521, 2.4540006752693335e-8, -3.436564740426527e-8)
+                double3 xformOp:translate = (-8.796176251268939e-8, -0.00772534143217582, -0.023776243329048152)
             }
 
             over "wheel_passive_8"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170044604703, -0.5877852384109385, -2.365577439141243e-8, 5.631192835039009e-8)
+                double3 xformOp:translate = (-7.763320761244863e-8, 0.007725514107811887, -0.023776235878467555)
             }
 
             over "wheel_passive_9"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565085616465, -0.3090170181762249, -2.0992385970391514e-8, 7.16593803544939e-8)
+                double3 xformOp:translate = (-8.570414414266203e-8, 0.02022549756197964, -0.014694454967975612)
             }
         }
 
         over "wheel_2"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.9238794974188232, -1.5454736219569138e-8, -6.505280340557213e-9, -0.3826835170857801)
+            double3 xformOp:translate = (-0.17649293279647826, 0.17649294185638428, 0.07183415919542313)
         }
 
         over "OmniWheel_11"
         {
             over "wheel"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999997, -1.2468208332506132e-8, -1.2611534950884487e-8, -1.8751714106580706e-8)
+                double3 xformOp:translate = (9.424035235516826e-8, 6.406334934760949e-9, 1.6123056412187253e-7)
             }
 
             over "wheel_passive_0"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999993, -1.1871865614385077e-8, -4.380214496761107e-9, 3.423653249595426e-8)
+                double3 xformOp:translate = (9.054180183376559e-8, 0.02499999965645064, 1.6123056412187253e-7)
             }
 
             over "wheel_passive_1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565098715386, 0.30901701414479976, -1.6702823720539996e-8, -2.0662957079822463e-8)
+                double3 xformOp:translate = (9.124816058303509e-8, 0.02022543606974256, 0.014694784879684453)
             }
 
             over "wheel_passive_2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170632715931, 0.5877851574643613, -1.2793903326110215e-8, 5.6312327685796967e-8)
+                double3 xformOp:translate = (9.3097435871492e-8, 0.007725439444684706, 0.023776562064886098)
             }
 
             over "wheel_passive_3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.5877852711921846, 0.8090169806435024, 1.321968198493673e-8, 2.787148794285722e-8)
+                double3 xformOp:translate = (7.430984144685127e-8, -0.00772540555859369, 0.023776573240756993)
             }
 
             over "wheel_passive_4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.30901701241796037, 0.9510565104326227, -3.513895217363077e-9, 2.5983959000123643e-8)
+                double3 xformOp:translate = (8.669583040354922e-8, -0.020225412720362074, 0.01469479233026505)
             }
 
             over "wheel_passive_5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-3.192254410238827e-8, 0.9999999999999993, -8.989377017161324e-9, 1.949915187703852e-8)
+                double3 xformOp:translate = (8.740218915281872e-8, -0.024999976307070154, 1.6123056412187253e-7)
             }
 
             over "wheel_passive_6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.3090170643841161, 0.9510564935477925, -2.6323611498490986e-8, -2.047932718749499e-9)
+                double3 xformOp:translate = (8.669583040354922e-8, -0.020225412720362074, -0.014694469869136806)
             }
 
             over "wheel_passive_7"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.5877852464554736, 0.8090169986157759, -1.4314073479353367e-8, 4.801202393948169e-10)
+                double3 xformOp:translate = (7.430984144685127e-8, -0.00772540555859369, -0.023776243329048152)
             }
 
             over "wheel_passive_8"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170125568622, -0.5877852272672133, 1.7517944125351553e-8, 1.14902809297299e-9)
+                double3 xformOp:translate = (9.3097435871492e-8, 0.007725439444684706, -0.023776243329048152)
             }
 
             over "wheel_passive_9"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565191099365, -0.30901698571193353, -3.947492313871639e-9, 4.076391670631267e-8)
+                double3 xformOp:translate = (9.124816058303509e-8, 0.02022543606974256, -0.014694462418556209)
             }
         }
 
         over "wheel_3"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.9238795444596222, -1.54348009686079e-8, 6.196491397835178e-9, 0.3826834035192547)
+            double3 xformOp:translate = (-0.17649290299415588, -0.1764930362701416, 0.07183418154716492)
         }
 
         over "OmniWheel_12"
         {
             over "wheel"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999943, -1.1879145688702e-8, 1.1622204030662075e-8, -1.051098716693766e-7)
+                double3 xformOp:translate = (4.8553155607145015e-8, -9.424036043204076e-8, 1.8358230591264402e-7)
             }
 
             over "wheel_passive_0"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999983, -1.1820990271151043e-8, 1.9097012590751545e-8, -5.3162368015293446e-8)
+                double3 xformOp:translate = (5.225170607303653e-8, 0.024999899009755217, 1.8358230591264402e-7)
             }
 
             over "wheel_passive_1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565278195602, 0.3090169589064511, 5.739257734714049e-10, -1.0432396938746055e-7)
+                double3 xformOp:translate = (4.627699046189093e-8, 0.020225330154691884, 0.014694807231426243)
             }
 
             over "wheel_passive_2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170264143205, 0.5877852081940519, -2.3782687964436116e-8, -7.252535842045565e-8)
+                double3 xformOp:translate = (4.4427715228945175e-8, 0.007725333529634032, 0.023776588141918187)
             }
 
             over "wheel_passive_3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.587785281144073, 0.8090169734130301, -4.0753437516548655e-8, -4.6866342063934034e-8)
+                double3 xformOp:translate = (3.1605174810600545e-8, -0.00772550093692756, 0.023776591867208485)
             }
 
             over "wheel_passive_4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.30901697545473994, 0.9510565224426999, -4.6829574615814386e-8, -3.10621883640528e-8)
+                double3 xformOp:translate = (2.9755899522143636e-8, -0.02022549756198541, 0.01469481468200684)
             }
 
             over "wheel_passive_5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-3.182278900931347e-8, 0.9999999999999987, -4.135409317883536e-8, -4.056672471900473e-9)
+                double3 xformOp:translate = (4.48546050302312e-8, -0.025000087490476136, 1.8358230591264402e-7)
             }
 
             over "wheel_passive_6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.3090170589514585, 0.9510564953129695, -5.155361754950484e-8, 1.1965988880895906e-8)
+                double3 xformOp:translate = (2.9755899522143636e-8, -0.02022549756198541, -0.014694447517395015)
             }
 
             over "wheel_passive_7"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.587785281144073, 0.8090169734130301, -4.0753437516548655e-8, 4.6866342063934034e-8)
+                double3 xformOp:translate = (3.1605174810600545e-8, -0.00772550093692756, -0.02377622842788696)
             }
 
             over "wheel_passive_8"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170302630452, -0.5877852028967384, 3.754956531440633e-8, -4.1630787788737346e-8)
+                double3 xformOp:translate = (4.4427715228945175e-8, 0.007725333529634032, -0.02377622097730636)
             }
 
             over "wheel_passive_9"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565184084884, -0.3090169878707557, 1.0830930855289095e-8, -9.860208251509918e-8)
+                double3 xformOp:translate = (4.627699046189093e-8, 0.020225330154691884, -0.014694440066814418)
             }
         }
 
         over "wheel_4"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.38268350966412934, -6.618774834937316e-9, 1.57860284209935e-8, 0.9238795004929724)
+            double3 xformOp:translate = (0.17649307513237, -0.17649315547943115, 0.07183416664600373)
         }
 
         over "OmniWheel_13"
         {
             over "wheel"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999957, 1.2188689930982384e-8, 1.2294388573321077e-8, -9.143316378344764e-8)
+                double3 xformOp:translate = (-1.5746062527466353e-7, 5.681395389561805e-8, 1.6868114472573525e-7)
             }
 
             over "wheel_passive_0"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.999999999999991, 1.2000322068147073e-8, 1.9647005998266473e-8, -1.3211964435500228e-7)
+                double3 xformOp:translate = (-1.5580673101700526e-7, 0.025000051381158857, 1.6868114472573525e-7)
             }
 
             over "wheel_passive_1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565071587355, 0.3090170224939022, -1.4108947081321637e-8, -1.7076072701560112e-7)
+                double3 xformOp:translate = (-1.5191978813833273e-7, 0.020225470672293473, 0.014694792330265057)
             }
 
             over "wheel_passive_2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170078442509, 0.5877852337535575, -3.7422652441643096e-8, -9.890549890067724e-8)
+                double3 xformOp:translate = (-1.5472236866709288e-7, 0.007725481949769623, 0.023776573240757)
             }
 
             over "wheel_passive_3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.5877852123154469, 0.8090170234199455, -7.960752161667678e-8, -1.0007991029812889e-7)
+                double3 xformOp:translate = (-1.5756470381211862e-7, -0.0077253656876838245, 0.023776573240757)
             }
 
             over "wheel_passive_4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.3090169416367376, 0.9510565334308271, -1.0780470166249609e-7, -6.207770116790629e-8)
+                double3 xformOp:translate = (-1.656356404811099e-7, -0.020225359678563662, 0.014694796055555355)
             }
 
             over "wheel_passive_5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-5.5762884914985805e-8, 0.9999999999999946, -8.969651399177635e-8, -4.5812134577772125e-9)
+                double3 xformOp:translate = (-1.6306578665137295e-7, -0.02499994170451804, 1.6868114472573525e-7)
             }
 
             over "wheel_passive_6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.3090170497255653, 0.9510564983106422, -8.499498254738442e-8, 4.386633001018581e-9)
+                double3 xformOp:translate = (-1.5509892850595897e-7, -0.020225370215275935, -0.014694469869136799)
             }
 
             over "wheel_passive_7"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.5877852416020397, 0.8090170021419916, -1.071412745890958e-7, 7.235613382449014e-8)
+                double3 xformOp:translate = (-1.6283305981357188e-7, -0.007725360419327691, -0.023776243329048145)
             }
 
             over "wheel_passive_8"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.8090170334953182, -0.5877851984478876, 6.02323646783665e-8, -9.516641603307306e-8)
+                double3 xformOp:translate = (-1.5999072466854614e-7, 0.007725487218125764, -0.02377623587846755)
             }
 
             over "wheel_passive_9"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9510565128928637, -0.3090170048460658, 4.616412131543827e-8, -1.7470505438785695e-7)
+                double3 xformOp:translate = (-1.571881441259082e-7, 0.0202254759406496, -0.014694447517395008)
             }
         }
 
@@ -414,27 +618,47 @@ def Xform "Galbot_One" (
 
     over "leg_link2"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (0.7071066740788606, 0.7071068882942148, 4.553203325485777e-8, 5.3604942706897054e-8)
+        double3 xformOp:translate = (-0.4170560836791992, 0.08699984103441238, 0.1690100133419037)
     }
 
     over "leg_link3"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (-3.7369329791533176e-8, 1.8975699347668816e-8, 0.7071067215818937, 0.7071068407911953)
+        double3 xformOp:translate = (-0.027056103572249413, 0.08699990063905716, 0.1690100133419037)
     }
 
     over "leg_link4"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (0.9999999999999994, 2.523746521469226e-8, 2.173771519021593e-8, -8.74707077489608e-10)
+        double3 xformOp:translate = (-0.027056105434894562, 0.08699990063905716, 0.16901002824306488)
     }
 
     over "head_link1"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (0.9999999999999997, 1.9235285657978156e-8, -1.720858542504446e-8, -4.677713139073168e-11)
+        double3 xformOp:translate = (-0.03522297739982605, 0.08704987168312073, 0.7529498934745789)
     }
 
     over "head_link2"
     {
+        vector3f physics:angularVelocity = (0, 0, 0)
         rel physics:simulationOwner
+        vector3f physics:velocity = (0, 0, 0)
+        quatd xformOp:orient = (0.7071067932881635, -0.707106769084928, 1.4901161193847602e-8, -6.859045242890693e-8)
+        double3 xformOp:translate = (-0.03522297739982605, 0.08704988658428192, 0.7529498934745789)
     }
 
     over "joints"
@@ -725,84 +949,148 @@ def Xform "Galbot_One" (
 
         over "right_link6"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.7071067932881578, 6.74917828291651e-8, -0.707106769084927, -9.819632396101904e-8)
+            double3 xformOp:translate = (7.896697521228568e-8, -0.9159998173713684, -2.408027648392874e-7)
         }
 
         over "right_link5"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.5000000521540695, 0.5000000223517373, 0.5000000223517375, -0.4999999031424425)
+            double3 xformOp:translate = (4.7302007675359414e-8, -0.9159998769760131, -1.811981200638968e-7)
         }
 
         over "right_link4"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (-0.7071066740788613, -6.117625162005381e-8, 0.7071068882942148, 1.490116119384754e-8)
+            double3 xformOp:translate = (1.191174983997123e-8, -0.5559999222755432, -6.198883051311554e-8)
         }
 
         over "right_link3"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.49999996274709296, 0.5000000521540612, 0.5000000521540611, -0.4999999329447733)
+            double3 xformOp:translate = (6.32381439227836e-9, -0.5559999222755432, -6.198883051311554e-8)
         }
 
         over "right_link2"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (2.7241175598772466e-8, 2.421438405342284e-8, 0.9999999999999967, 7.450579708745488e-8)
+            double3 xformOp:translate = (2.5985240938164456e-9, -0.20599995803833007, -2.38418573772492e-9)
         }
 
         over "left_link5"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (-0.4995653928581114, 0.5004352987251125, 0.4995643258428819, 0.5004342258414936)
+            double3 xformOp:translate = (0.0012352380809783937, 0.9159990673065186, -1.811981200638968e-7)
         }
 
         over "left_link2"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (4.1909513254393603e-8, 0.9999996216571607, -0.0008698766870905961, -2.8789508491426935e-7)
+            double3 xformOp:translate = (-4.8520565031073826e-9, 0.20599992322921754, -6.198883051311554e-8)
         }
 
         over "right_link1"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.7071067336835178, 0.707106828689573, -2.1536834537982874e-8, 3.2205207389779296e-8)
+            double3 xformOp:translate = (7.358789445854885e-10, -0.20599992823600768, -2.38418573772492e-9)
         }
 
         over "left_link1"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (-7.613562441038584e-8, 1.3748649743058948e-7, 0.7071067811865389, 0.7071067811865387)
+            double3 xformOp:translate = (-4.8520565031073826e-9, 0.20599992322921754, -6.198883051311554e-8)
         }
 
         over "Hitbot_Gripper_right"
         {
             over "gripper_base"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999999999999943, 1.309884952898386e-8, -9.693150412246028e-8, 4.191632737670457e-8)
+                double3 xformOp:translate = (1.5506744377447035e-7, -6.607422434537491e-8, 1.7622438042153021e-7)
             }
 
             over "gripper_link2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-6.948683955437437e-8, 0.9238795267352117, -0.38268344630975815, 5.7477335691422404e-8)
+                double3 xformOp:translate = (0.13680008659362775, -0.010000026735158762, 2.3582902519692084e-7)
             }
 
             over "gripper_link1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-5.205588487472078e-8, 0.9238795403580569, -0.3826834134213066, -1.3078282116376246e-8)
+                double3 xformOp:translate = (0.12183014163970929, -0.020000031168254218, 1.7622438042153021e-7)
             }
 
             over "gripper_link4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-1.0130267230453529e-8, 0.9238795123755292, 0.3826834809771044, 2.2796959978422924e-8)
+                double3 xformOp:translate = (0.12183347949981671, 0.01999994837990204, 2.3582902519692084e-7)
             }
 
             over "gripper_link5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-6.529100310233915e-9, 0.9238795347272749, 0.38268342701521574, 6.340610574926232e-8)
+                double3 xformOp:translate = (0.13680008659362775, 0.009999946740774316, 2.3582902519692084e-7)
             }
 
             over "gripper_link6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-3.1659723670304024e-8, 0.9999999999999973, -1.7114267284720913e-8, 6.554012338625331e-8)
+                double3 xformOp:translate = (0.18276218185424786, 0.05596188553920191, 2.3582902519692084e-7)
             }
 
             over "gripper_link3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-4.0838690146090876e-8, 0.999999999999995, -1.7114269447659844e-8, 8.91526961415875e-8)
+                double3 xformOp:translate = (0.18276218185424786, -0.055961952495070286, 2.3582902519692084e-7)
             }
 
             over "joints"
@@ -849,74 +1137,104 @@ def Xform "Galbot_One" (
         {
             over "gripper_link6"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.0000010603284447626347, 0.9999996215011978, 0.0008700553621281546, -6.202047085312258e-8)
+                double3 xformOp:translate = (0.18266326293945312, 0.05766248857021416, 2.975131097038286e-7)
             }
 
             over "gripper_link4"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.0000010141584955655093, 0.9235461899409667, 0.3834872032342317, 2.8716655130756e-7)
+                double3 xformOp:translate = (0.12179726467132568, 0.021594587391019722, 2.3790846492843798e-7)
             }
 
             over "gripper_link1"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-9.613849156150527e-7, 0.9242121403906765, -0.3818794568359045, -5.24250287905564e-7)
+                double3 xformOp:translate = (0.12186342582702636, -0.018405333483814346, 1.1869917537765673e-7)
             }
 
             over "gripper_link2"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-9.86701855048791e-7, 0.9242121255520861, -0.3818794927477991, -4.5324813400792804e-7)
+                double3 xformOp:translate = (0.13681608543395996, -0.008379295790790664, 1.7830382015304735e-7)
             }
 
             over "gripper_base"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (0.9999996214801729, 0.0000010036219550892082, 7.639123232071848e-8, 0.0008700795928694304)
+                double3 xformOp:translate = (-0.0000011314392089900593, 0.0013826486223944869, 1.7830382015304735e-7)
             }
 
             over "gripper_link5"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.000001005702201012031, 0.9235462110447668, 0.38348715241025844, 3.392078962904204e-7)
+                double3 xformOp:translate = (0.13678127632141113, 0.011620651608110323, 1.7830382015304735e-7)
             }
 
             over "gripper_link3"
             {
+                vector3f physics:angularVelocity = (0, 0, 0)
                 rel physics:simulationOwner
+                vector3f physics:velocity = (0, 0, 0)
+                quatd xformOp:orient = (-0.0000010836892098627435, 0.9999996214278305, 0.0008701396556805099, -3.16918514697985e-8)
+                double3 xformOp:translate = (0.18285793170928955, -0.0542611855512849, 5.909453071328841e-8)
             }
 
             over "joints"
             {
                 over "gripper_joint"
                 {
-                    float state:angular:physics:position = 0
+                    float physics:lowerLimit = 0
+                    float physics:upperLimit = 42.971832
+                    float state:angular:physics:position = 1.9898672e-10
                     float state:angular:physics:velocity = 0
                 }
 
                 over "gripper_joint2"
                 {
-                    float state:angular:physics:position = 0
+                    float state:angular:physics:position = 5.392566e-7
                     float state:angular:physics:velocity = 0
                 }
 
                 over "gripper_joint4"
                 {
-                    float state:angular:physics:position = 0
+                    float state:angular:physics:position = -1.5297223e-7
                     float state:angular:physics:velocity = 0
                 }
 
                 over "gripper_joint5"
                 {
-                    float state:angular:physics:position = 0
+                    float state:angular:physics:position = 2.889988e-7
                     float state:angular:physics:velocity = 0
                 }
 
                 over "gripper_joint3"
                 {
-                    float state:angular:physics:position = 0
+                    float state:angular:physics:position = -3.5012386e-7
                     float state:angular:physics:velocity = 0
                 }
 
                 over "gripper_joint6"
                 {
-                    float state:angular:physics:position = 0
+                    float state:angular:physics:position = -9.753402e-8
                     float state:angular:physics:velocity = 0
                 }
             }
@@ -924,69 +1242,93 @@ def Xform "Galbot_One" (
 
         over "left_link7"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.5004342832910473, -0.4995641953721407, 0.5004353769029636, 0.4995653874650948)
+            double3 xformOp:translate = (0.0012352529821395876, 0.9159990673065186, -1.811981200638968e-7)
         }
 
         over "base_link"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (1, 0, 0, 0)
+            double3 xformOp:translate = (7.358789445854885e-10, -2.503395074571202e-9, -2.38418573772492e-9)
         }
 
         over "left_link4"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.0006150735758955735, -0.7071060665974785, 0.0006151760573754479, 0.707106960667166)
+            double3 xformOp:translate = (0.0006089404133558275, 0.5559994702339173, -1.2159347528850617e-7)
         }
 
         over "left_link3"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (-0.49956511351369415, 0.5004351533675613, 0.49956453815869434, 0.5004344381118527)
+            double3 xformOp:translate = (0.0006089422760009768, 0.5559994702339173, -1.2159347528850617e-7)
         }
 
         over "left_link6"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.000615081860975738, -0.7071056791780153, 0.0006151422064519103, 0.7071073481081696)
+            double3 xformOp:translate = (0.0012352436689138414, 0.9159990673065186, -1.2159347528850617e-7)
         }
 
         over "right_link7"
         {
+            vector3f physics:angularVelocity = (0, 0, 0)
             rel physics:simulationOwner
+            vector3f physics:velocity = (0, 0, 0)
+            quatd xformOp:orient = (0.49999989196656586, 0.4999999366700602, -0.5000000558793488, 0.500000115483993)
+            double3 xformOp:translate = (7.337903976459281e-8, -0.9159997577667236, -1.811981200638968e-7)
         }
 
         over "joints"
         {
             over "left_joint1"
             {
-                float drive:angular:physics:targetPosition = -75.5
+                float drive:angular:physics:targetPosition = -0
                 float physics:lowerLimit = -180
                 float physics:upperLimit = 180
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = 0.00003239696
                 float state:angular:physics:velocity = 0
             }
 
             over "left_joint2"
             {
-                float drive:angular:physics:targetPosition = 41.600002
+                float drive:angular:physics:targetPosition = 0.1
                 float physics:lowerLimit = -90
                 float physics:upperLimit = 104.85127
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = 0.09967719
                 float state:angular:physics:velocity = 0
             }
 
             over "left_joint3"
             {
-                float drive:angular:physics:targetPosition = -0.4
+                float drive:angular:physics:targetPosition = -0
                 float physics:lowerLimit = -180
                 float physics:upperLimit = 180
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = 0.000055052442
                 float state:angular:physics:velocity = 0
             }
 
             over "left_joint4"
             {
-                float drive:angular:physics:targetPosition = 35.100002
+                float drive:angular:physics:targetPosition = -0
                 float physics:lowerLimit = -120.32112
                 float physics:upperLimit = 120.32112
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = 7.59059e-7
                 float state:angular:physics:velocity = 0
             }
 
@@ -994,7 +1336,7 @@ def Xform "Galbot_One" (
             {
                 float physics:lowerLimit = -180
                 float physics:upperLimit = 180
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = 0.00005369537
                 float state:angular:physics:velocity = 0
             }
 
@@ -1002,7 +1344,7 @@ def Xform "Galbot_One" (
             {
                 float physics:lowerLimit = -90
                 float physics:upperLimit = 90
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = -0.000007046568
                 float state:angular:physics:velocity = 0
             }
 
@@ -1010,12 +1352,14 @@ def Xform "Galbot_One" (
             {
                 float physics:lowerLimit = -180
                 float physics:upperLimit = 180
-                float state:angular:physics:position = 0
+                float state:angular:physics:position = -5.233778e-10
                 float state:angular:physics:velocity = 0
             }
 
             over "right_joint1"
             {
+                float physics:lowerLimit = -180
+                float physics:upperLimit = 180
                 float state:angular:physics:position = 0
                 float state:angular:physics:velocity = 0
             }
@@ -1177,7 +1521,7 @@ def "Render" (
                 uint omni:rtx:viewTile:limit = 4294967295
                 rel orderedVars = </Render/Vars/LdrColor>
                 custom bool overrideClipRange = 0
-                uniform int2 resolution = (1920, 1111)
+                uniform int2 resolution = (1566, 1306)
             }
 
             def RenderProduct "Replicator" (
