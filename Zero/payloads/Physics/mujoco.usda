@@ -1,0 +1,191 @@
+#usda 1.0
+(
+    defaultPrim = "Galbot_Zero"
+    metersPerUnit = 1
+    subLayers = [
+        @./physics.usda@
+    ]
+    upAxis = "Z"
+)
+
+over "Galbot_Zero" (
+    prepend apiSchemas = ["NewtonArticulationRootAPI"]
+)
+{
+    bool newton:selfCollisionEnabled = 0
+
+    over "base_link"
+    {
+        uniform float mjc:gravcomp = 1
+    }
+
+    over "body_lift_link"
+    {
+        uniform float mjc:gravcomp = 1
+    }
+
+    over "head_yaw_link"
+    {
+        uniform float mjc:gravcomp = 1
+    }
+
+    over "head_pitch_link"
+    {
+        uniform float mjc:gravcomp = 1
+    }
+
+    over "joints"
+    {
+        over "body_lift_joint" (
+            prepend apiSchemas = ["MjcJointAPI"]
+            delete apiSchemas = ["PhysicsJointStateAPI:linear", "PhysicsDriveAPI:linear"]
+        )
+        {
+            float drive:linear:physics:damping = None
+            float drive:linear:physics:maxForce = None
+            float drive:linear:physics:stiffness = None
+            float drive:linear:physics:targetPosition = None
+            uniform token drive:linear:physics:type = None
+            uniform double mjc:armature = 0.01
+            uniform bool mjc:actuatorgravcomp = 1
+            uniform double mjc:damping = 0.1
+            uniform token mjc:actuatorfrclimited = "auto"
+            uniform double mjc:actuatorfrcrange:min = -5000
+            uniform double mjc:actuatorfrcrange:max = 5000
+        }
+
+        over "head_joint1" (
+            prepend apiSchemas = ["MjcJointAPI"]
+            delete apiSchemas = ["PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = None
+            float drive:angular:physics:maxForce = None
+            float drive:angular:physics:stiffness = None
+            float drive:angular:physics:targetPosition = None
+            uniform token drive:angular:physics:type = None
+            uniform double mjc:armature = 0.01
+            uniform bool mjc:actuatorgravcomp = 1
+            uniform double mjc:damping = 0.1
+            uniform token mjc:actuatorfrclimited = "auto"
+            uniform double mjc:actuatorfrcrange:min = -60
+            uniform double mjc:actuatorfrcrange:max = 60
+        }
+
+        over "head_joint2" (
+            prepend apiSchemas = ["MjcJointAPI"]
+            delete apiSchemas = ["PhysicsJointStateAPI:angular", "PhysicsDriveAPI:angular"]
+        )
+        {
+            float drive:angular:physics:damping = None
+            float drive:angular:physics:maxForce = None
+            float drive:angular:physics:stiffness = None
+            float drive:angular:physics:targetPosition = None
+            uniform token drive:angular:physics:type = None
+            uniform double mjc:armature = 0.01
+            uniform bool mjc:actuatorgravcomp = 1
+            uniform double mjc:damping = 0.1
+            uniform token mjc:actuatorfrclimited = "auto"
+            uniform double mjc:actuatorfrcrange:min = -60
+            uniform double mjc:actuatorfrcrange:max = 60
+        }
+    }
+
+    def Scope "actuators"
+    {
+        def MjcActuator "body_lift_joint"
+        {
+            uniform token mjc:gainType = "fixed"
+            uniform token mjc:biasType = "affine"
+            uniform double[] mjc:gainPrm = [600000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            uniform double[] mjc:biasPrm = [0, -600000, -60000, 0, 0, 0, 0, 0, 0, 0]
+            uniform token mjc:forceLimited = "true"
+            uniform double mjc:forceRange:min = -5000
+            uniform double mjc:forceRange:max = 5000
+            uniform token mjc:ctrlLimited = "true"
+            uniform double mjc:ctrlRange:min = 0
+            uniform double mjc:ctrlRange:max = 0.75
+            rel mjc:target = </Galbot_Zero/joints/body_lift_joint>
+        }
+
+        def MjcActuator "head_joint1"
+        {
+            uniform token mjc:gainType = "fixed"
+            uniform token mjc:biasType = "affine"
+            uniform double[] mjc:gainPrm = [600000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            uniform double[] mjc:biasPrm = [0, -600000, -60000, 0, 0, 0, 0, 0, 0, 0]
+            uniform token mjc:forceLimited = "true"
+            uniform double mjc:forceRange:min = -60
+            uniform double mjc:forceRange:max = 60
+            uniform token mjc:ctrlLimited = "true"
+            uniform double mjc:ctrlRange:min = -90
+            uniform double mjc:ctrlRange:max = 90
+            rel mjc:target = </Galbot_Zero/joints/head_joint1>
+        }
+
+        def MjcActuator "head_joint2"
+        {
+            uniform token mjc:gainType = "fixed"
+            uniform token mjc:biasType = "affine"
+            uniform double[] mjc:gainPrm = [600000, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            uniform double[] mjc:biasPrm = [0, -600000, -60000, 0, 0, 0, 0, 0, 0, 0]
+            uniform token mjc:forceLimited = "true"
+            uniform double mjc:forceRange:min = -60
+            uniform double mjc:forceRange:max = 60
+            uniform token mjc:ctrlLimited = "true"
+            uniform double mjc:ctrlRange:min = -69.99999
+            uniform double mjc:ctrlRange:max = 3
+            rel mjc:target = </Galbot_Zero/joints/head_joint2>
+        }
+    }
+
+    over "chassis" (
+        variants = {
+            string Physics = "mujoco"
+        }
+    )
+    {
+    }
+
+    over "RM75_Left" (
+        variants = {
+            string Physics = "mujoco"
+        }
+    )
+    {
+        over "link7"
+        {
+            over "tcp"
+            {
+                over "Inspire_EG2_4C2" (
+                    variants = {
+                        string Physics = "mujoco"
+                    }
+                )
+                {
+                }
+            }
+        }
+    }
+
+    over "RM75_Right" (
+        variants = {
+            string Physics = "mujoco"
+        }
+    )
+    {
+        over "link7"
+        {
+            over "tcp"
+            {
+                over "Inspire_EG2_4C2" (
+                    variants = {
+                        string Physics = "mujoco"
+                    }
+                )
+                {
+                }
+            }
+        }
+    }
+}

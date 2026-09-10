@@ -1,0 +1,149 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (3.793008703399221, -1.6869623905059623, 1.9369094726768272)
+                double3 target = (-3.862967391425445, 1.6735227620758015, -1.3763286882517292)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Galbot_Zero.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "Galbot_Zero"
+    endTimeCode = 0
+    metersPerUnit = 1
+    startTimeCode = -1
+    subLayers = [
+        @./physics.usda@
+    ]
+    upAxis = "Z"
+)
+
+def "Galbot_Zero" (
+    prepend apiSchemas = ["PhysxArticulationAPI"]
+)
+{
+    bool physxArticulation:enabledSelfCollisions = 0
+    float physxArticulation:sleepThreshold = 0.00005
+    int physxArticulation:solverPositionIterationCount = 64
+    int physxArticulation:solverVelocityIterationCount = 4
+    float physxArticulation:stabilizationThreshold = 0.00001
+
+    over "joints"
+    {
+        over "body_lift_joint" (
+            prepend apiSchemas = ["PhysicsDriveAPI:linear", "PhysxJointAPI"]
+        )
+        {
+            float drive:linear:physics:damping = 60000
+            float drive:linear:physics:maxForce = 5000
+            float drive:linear:physics:stiffness = 600000
+            float drive:linear:physics:targetPosition = 0
+            uniform token drive:linear:physics:type = "force"
+            float physxJoint:maxJointVelocity = 0.15
+        }
+
+        over "head_joint1" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular", "PhysxJointAPI"]
+        )
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 60
+            float drive:angular:physics:stiffness = 600000
+            float drive:angular:physics:targetPosition = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxJoint:maxJointVelocity = 85.943665
+        }
+
+        over "head_joint2" (
+            prepend apiSchemas = ["PhysicsDriveAPI:angular", "PhysxJointAPI"]
+        )
+        {
+            float drive:angular:physics:damping = 60000
+            float drive:angular:physics:maxForce = 60
+            float drive:angular:physics:stiffness = 600000
+            float drive:angular:physics:targetPosition = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxJoint:maxJointVelocity = 85.943665
+        }
+    }
+
+    over "base_link"
+    {
+        bool physxArticulation:enabledSelfCollisions = 0
+        int physxArticulation:solverPositionIterationCount = 32
+        int physxArticulation:solverVelocityIterationCount = 1
+    }
+
+    over "chassis" (
+        variants = {
+            string Physics = "physx"
+        }
+    )
+    {
+    }
+
+    over "RM75_Left" (
+        variants = {
+            string Physics = "physx"
+        }
+    )
+    {
+        over "link7"
+        {
+            over "tcp"
+            {
+                over "Inspire_EG2_4C2" (
+                    variants = {
+                        string Physics = "physx"
+                    }
+                )
+                {
+                }
+            }
+        }
+    }
+
+    over "RM75_Right" (
+        variants = {
+            string Physics = "physx"
+        }
+    )
+    {
+        over "link7"
+        {
+            over "tcp"
+            {
+                over "Inspire_EG2_4C2" (
+                    variants = {
+                        string Physics = "physx"
+                    }
+                )
+                {
+                }
+            }
+        }
+    }
+}
+

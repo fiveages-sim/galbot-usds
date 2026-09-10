@@ -1,0 +1,20 @@
+#usda 1.0
+(
+    defaultPrim = "Galbot_Zero"
+    metersPerUnit = 1
+    subLayers = [
+        @./enable.usda@
+    ]
+    upAxis = "Z"
+)
+
+over "Galbot_Zero"
+{
+    over "chassis" (
+        variants = {
+            string ROS = "full"
+        }
+    )
+    {
+    }
+}

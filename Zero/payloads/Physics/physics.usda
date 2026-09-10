@@ -1,0 +1,152 @@
+#usda 1.0
+(
+    customLayerData = {
+        dictionary cameraSettings = {
+            dictionary Front = {
+                double3 position = (5, 0, 0)
+                double radius = 5
+            }
+            dictionary Perspective = {
+                double3 position = (3.793008703399221, -1.6869623905059623, 1.9369094726768272)
+                double3 target = (-3.862967391425445, 1.6735227620758015, -1.3763286882517292)
+            }
+            dictionary Right = {
+                double3 position = (0, -5, 0)
+                double radius = 5
+            }
+            dictionary Top = {
+                double3 position = (0, 0, 5)
+                double radius = 5
+            }
+            string boundCamera = "/OmniverseKit_Persp"
+        }
+        dictionary omni_layer = {
+            string authoring_layer = "./Galbot_Zero.usd"
+            dictionary locked = {
+            }
+            dictionary muteness = {
+            }
+        }
+        dictionary renderSettings = {
+        }
+    }
+    defaultPrim = "Galbot_Zero"
+    doc = """Generated from Composed Stage of root layer /home/fiveages/libraries/FaSim-Isaac/robots/humanoid/Galbot/Galbot_Zero/Galbot_Zero.usda
+
+
+Generated from Composed Stage of root layer /home/fiveages/libraries/FaSim-Isaac/robots/humanoid/Galbot/Zero/payloads/base.usd
+"""
+    endTimeCode = 0
+    metersPerUnit = 1
+    startTimeCode = -1
+    upAxis = "Z"
+)
+
+over "Galbot_Zero" (
+    prepend apiSchemas = ["PhysicsArticulationRootAPI"]
+)
+{
+    over "base_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0.025789997, -0.00008669874, 0.40292)
+        float3 physics:diagonalInertia = (0.29388, 0.28323, 0.014663974)
+        float physics:mass = 6.2299
+        quatf physics:principalAxes = (1, 0.000056791243, -0.00014052463, -0.000017063228)
+    }
+
+    over "body_lift_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (-0.043365773, -0.000014959606, 0.18642257)
+        float3 physics:diagonalInertia = (0.046547163, 0.041581724, 0.0093406085)
+        float physics:mass = 3.6737301
+        quatf physics:principalAxes = (0.999943, 0.000058376692, -0.010684725, 0.000060380662)
+    }
+
+    over "joints"
+    {
+        def PhysicsPrismaticJoint "body_lift_joint" (
+            prepend apiSchemas = ["PhysicsJointStateAPI:linear"]
+        )
+        {
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            prepend rel physics:body0 = </Galbot_Zero/base_link>
+            custom rel physics:body1
+            prepend rel physics:body1 = </Galbot_Zero/body_lift_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.6309854
+            point3f physics:localPos0 = (0.1015, 8.873411e-9, 0.14)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (-4.371139e-8, 0, 0, 1)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = 0
+            float physics:upperLimit = 0.75
+        }
+
+        def PhysicsRevoluteJoint "head_joint1" (
+            prepend apiSchemas = ["PhysicsJointStateAPI:angular"]
+        )
+        {
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            prepend rel physics:body0 = </Galbot_Zero/body_lift_link>
+            custom rel physics:body1
+            prepend rel physics:body1 = </Galbot_Zero/head_yaw_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.044066917
+            point3f physics:localPos0 = (-0.05, 0, 0.4726)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (-4.371139e-8, 0, 0, 1)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -90
+            float physics:upperLimit = 90
+        }
+
+        def PhysicsRevoluteJoint "head_joint2" (
+            prepend apiSchemas = ["PhysicsJointStateAPI:angular"]
+        )
+        {
+            uniform token physics:axis = "Z"
+            custom rel physics:body0
+            prepend rel physics:body0 = </Galbot_Zero/head_yaw_link>
+            custom rel physics:body1
+            prepend rel physics:body1 = </Galbot_Zero/head_pitch_link>
+            float physics:breakForce = 3.4028235e38
+            float physics:breakTorque = 3.4028235e38
+            float physics:JointEquivalentInertia = 0.018959213
+            point3f physics:localPos0 = (0.074, -0.0345, 0.0146)
+            point3f physics:localPos1 = (0, 0, 0)
+            quatf physics:localRot0 = (0.4999982, 0.5, -0.5, 0.50000185)
+            quatf physics:localRot1 = (1, 0, 0, 0)
+            float physics:lowerLimit = -69.99999
+            float physics:upperLimit = 3
+        }
+    }
+
+    over "head_yaw_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0.060943, -0.0042049, 0.013422)
+        float3 physics:diagonalInertia = (0.00017406429, 0.00023345975, 0.00023767598)
+        float physics:mass = 0.3007
+        quatf physics:principalAxes = (0.9986392, 0.0519211, 0.0013407174, -0.0047086384)
+    }
+
+    over "head_pitch_link" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        point3f physics:centerOfMass = (0.063851304, 0.0047812443, -0.033951458)
+        float3 physics:diagonalInertia = (0.0039846557, 0.0038160537, 0.0025130366)
+        float physics:mass = 0.87413
+        quatf physics:principalAxes = (0.9784557, -0.003400089, -0.0070733083, 0.20630753)
+    }
+}
+
