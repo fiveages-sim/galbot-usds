@@ -156,7 +156,7 @@ def Xform "World" (
     }
 
     def "d435" (
-        prepend payload = @../../../../sensors/d435.usd@
+        prepend payload = @../../../../sensors/realsense/d435.usd@
     )
     {
         quatf xformOp:orient = (-0.3902784, 0.5295917, 0.46854314, -0.58964634)

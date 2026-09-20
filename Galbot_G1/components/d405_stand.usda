@@ -160,8 +160,8 @@ def Xform "World" (
     }
 
     def "d405" (
-        delete payload = @../../../sensors/d405.usd@
-        prepend payload = @../../../../sensors/d405.usd@
+        delete payload = @../../../sensors/realsense/d405.usd@
+        prepend payload = @../../../../sensors/realsense/d405.usd@
     )
     {
         quatf xformOp:orient = (6.123234e-17, 0.043619387, 0.99904823, -6.117406e-17)

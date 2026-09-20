@@ -219,7 +219,7 @@ def Xform "Galbot_Charlie_Arms" (
                 over "left_camera_link"
                 {
                     def "d415" (
-                        prepend payload = @../../../../../sensors/d415.usd@
+                        prepend payload = @../../../../../sensors/realsense/d415.usd@
                     )
                     {
                         quatf xformOp:orient = (1, 0, 0, 0)
@@ -244,7 +244,7 @@ def Xform "Galbot_Charlie_Arms" (
                 over "right_camera_link"
                 {
                     def "d415" (
-                        prepend payload = @../../../../../sensors/d415.usd@
+                        prepend payload = @../../../../../sensors/realsense/d415.usd@
                     )
                     {
                         quatf xformOp:orient = (1, 0, 0, 0)
